@@ -1,12 +1,12 @@
 /**
  * Tabs
  */
-.tabs {
+ .tabs {
 	display: flex;
-	flex-wrap: wrap; // make sure it wraps
+	flex-wrap: wrap; 
 }
 .tabs label {
-	order: 1; // Put the labels first
+	order: 1; 
 	display: block;
 	padding: 1rem 2rem;
 	margin-right: 0.2rem;
@@ -16,7 +16,7 @@
   transition: background ease 0.2s;
 }
 .tabs .tab {
-  order: 99; // Put the tabs last
+  order: 99; 
   flex-grow: 1;
 	width: 100%;
 	display: none;
@@ -50,6 +50,7 @@
 */
 body {
   background: #666699;
+  color: white;
   min-height: 100vh;
 	box-sizing: border-box;
 	padding-top: 10vh;
@@ -61,3 +62,77 @@ body {
   font-size: 100%;
 }
 
+
+
+.navbar {
+
+  display: flex;
+  justify-content: center;
+  background-color: #333; 
+  padding: 1rem;
+
+}
+
+.navbar a {
+  color: white; /* Gjør lenkene hvite */
+  padding: 1rem;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.navbar a:hover {
+  background-color: #575757; /* Endrer bakgrunnsfarge på lenker når man holder musepekeren over dem */
+}
+
+.container {
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.image-container {
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+}
+
+
+/* tilbakeKnapp fungerer ikke
+
+*/
+
+.tilbakeKnapp {
+
+  color: white(106, 168, 55);
+
+}
+
+
+.form {
+
+  width: 50vw;
+  min-width:300px;
+
+}
+
+
+.col {
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
+  
+
+}
+
+
+.edit-form1 {
+
+  justify-content: center;
+
+}
