@@ -1,0 +1,25 @@
+body {
+    background: #666699;
+    color: white;
+    min-height: 100vh;
+      box-sizing: border-box;
+      padding-top: 10vh;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 60rem;
+    margin: 0 auto;
+    font-size: 100%;
+  }
+  
+  body, h2, p, a, th, td {
+    color: white !important; /* Ensure white text for the entire page */
+}
+
+table {
+    color: white; /* Ensures table content text is white */
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.1); /* Lighter stripe for visibility */
+}
