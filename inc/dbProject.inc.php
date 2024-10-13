@@ -5,7 +5,7 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
 
     $queries['createBruker'] = "
         CREATE OR REPLACE TABLE Bruker (
-            brukerId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             epost VARCHAR(100) NOT NULL UNIQUE,
             passord VARCHAR(500) NOT NULL,
             opprettet DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -14,7 +14,14 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
         );
     ";
 
-    $queries['createProfil'] = "
+    $queries['createRolle'] = "
+        CREATE OR REPLACE TABLE BrukerRolle (
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            navn Varchar(100) NOT NULL
+        );
+    ";
+
+    /*$queries['createProfil'] = "
         CREATE OR REPLACE TABLE Profil (
             brukerId INT PRIMARY KEY,
             navn VARCHAR(50) NOT NULL,
@@ -24,31 +31,30 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
             kjønn ENUM('M', 'F', 'O') NOT NULL,
             FOREIGN KEY (brukerId) REFERENCES Bruker(brukerId)
         );
-    ";
+    ";*/
 
     $queries['createRomType'] = "
         CREATE OR REPLACE TABLE RomType (
-            typeId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            typeNavn VARCHAR(50) NOT NULL,
-            beskrivelse VARCHAR(255) DEFAULT ' '
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            navn VARCHAR(50) NOT NULL,
+            beskrivelse VARCHAR(255) DEFAULT ' ',
+            pris DECIMAL(10, 2),
+            maxGjester INT NOT NULL
         );
     ";
 
     $queries['createRom'] = "
         CREATE OR REPLACE TABLE Rom (
-            romId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             etasje INT NOT NULL,
-            typeId INT NOT NULL,
-            døgnPris DECIMAL(10, 2),
-            antallSenger INT NOT NULL,
-            tilgjengelig BOOLEAN NOT NULL DEFAULT TRUE,
-            FOREIGN KEY (typeId) REFERENCES RomType(typeId)
+            romTypeId INT NOT NULL,
+            FOREIGN KEY (romTypeId) REFERENCES RomType(id)
         );
     ";
 
     $queries['createBooking'] = "
         CREATE OR REPLACE TABLE Booking (
-            bookingId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             brukerId INT NOT NULL,
             romId INT NOT NULL,
             antallVoksne INT NOT NULL,
@@ -56,19 +62,13 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
             startPeriode DATE NOT NULL,
             sluttPeriode DATE NOT NULL,
             totalPris DECIMAL(10, 2) NOT NULL,
-            FOREIGN KEY (brukerId) REFERENCES Bruker(brukerId),
-            FOREIGN KEY (romId) REFERENCES Rom(romId)
+            FOREIGN KEY (brukerId) REFERENCES Bruker(id),
+            FOREIGN KEY (romId) REFERENCES Rom(id)
         );
     ";
 
-    $queries['createRolle'] = "
-        CREATE OR REPLACE TABLE Rolle (
-            rolleId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            rolleNavn ENUM('gjest', 'bruker', 'administrativ') NOT NULL
-        );
-    ";
 
-    $queries['createRolleRegister'] = "
+    /*$queries['createRolleRegister'] = "
         CREATE OR REPLACE TABLE Rolle_register (
             rolleId INT NOT NULL,
             brukerId INT NOT NULL,
@@ -76,7 +76,7 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
             FOREIGN KEY (rolleId) REFERENCES Rolle(rolleId),
             FOREIGN KEY (brukerId) REFERENCES Bruker(brukerId)
         );
-    ";
+    ";*/
 
     /*$queries['createLoyaltyProgram'] = "
         CREATE OR REPLACE TABLE LoyaltyProgram (
@@ -100,10 +100,39 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
     ";*/
 
     $queries['insertRoomTypes'] = "
-        INSERT INTO RomType (typeNavn, beskrivelse) VALUES 
-        ('Single Room', 'A room assigned to one person.'),
-        ('Double Room', 'A room assigned to two people.'),
-        ('Suite', 'A larger room with separate living and sleeping areas.');
+        INSERT INTO RomType (navn, beskrivelse, pris, maxGjester) VALUES 
+        ('Single Room', 'One room with doublebed and a bathroom.', 750, 2),
+        ('Double Room', 'Two bedrooms and a living room for with a sleeping couch two one bathroom.', 1250, 5),
+        ('Suite', 'Luxerious room with seperate living and sleeping areas 3 bedrooms.', 1750, 6);
+    ";
+
+    $queries['insertRoom'] = "
+        INSERT INTO Rom (etasje, romTypeId) VALUES 
+        (1, 1),
+        (1, 1),
+        (1, 1),
+        (1, 2),
+        (1, 3),
+        (2, 1),
+        (2, 1),
+        (2, 2),
+        (2, 2),
+        (2, 3),
+        (3, 1),
+        (3, 1),
+        (3, 2),
+        (3, 2),
+        (3, 3),
+        (4, 1),
+        (4, 2),
+        (4, 2),
+        (4, 3),
+        (4, 3),
+        (5, 2),
+        (5, 2),
+        (5, 3),
+        (5, 3),
+        (5, 3)
     ";
 
     /*$queries['insertLoyaltyPrograms'] = "
@@ -119,7 +148,7 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
     ";
 
     $queries['insertRoller'] = "
-        INSERT INTO Rolle (rolleNavn) VALUES ('gjest'), ('bruker'), ('administrativ');
+        INSERT INTO BrukerRolle (navn) VALUES ('gjest'), ('bruker'), ('administrativ');
     ";
 
     /*$queries['insertRolleRegister'] = "

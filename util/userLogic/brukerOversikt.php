@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../cssDesign/bruker.css">
+    <link rel="stylesheet" href="../../css/bruker.css">
    
 
 </head>
@@ -18,7 +18,7 @@ $users = getAllUsers(); // Calls the getAllUsers function
 ?>
 
 <div class="tilbakeKnapp">
-    <a href="../index.php">
+    <a href="../../index.php">
         <button type="button">Tilbake til start</button>
         <br></br>
     </a>
@@ -55,8 +55,8 @@ $users = getAllUsers(); // Calls the getAllUsers function
                         <td>
                             <a href="redigerBruker.php?id=<?php echo $user['brukerId']; ?>" class="btn btn-primary">Edit</a>
 
-                            <a href="slettBruker.php?id=<?php echo $user['brukerId']; ?>" class="btn btn-danger btn-sm" 
-                              onclick="return confirm('Er du sikker på at du vil slette denne brukeren?');">Delete</a>
+                            <a href="slettBruker.php?id=<?php echo $user['brukerId']; ?>" class="btn btn-danger btn-sm"
+                               onclick="return confirm('Er du sikker på at du vil slette denne brukeren?');">Delete</a>
 
                         </td>
                     

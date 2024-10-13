@@ -21,5 +21,3 @@ $conn = mysqli_connect($config["db"]["host"], $config["db"]["user"], $config["db
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
-?>

@@ -36,7 +36,8 @@ function createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer,
 
 function getAllUsers() {
     global $conn;
-    $sql = "SELECT b.brukerId, b.epost, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjønn FROM Bruker b JOIN Profil p ON b.brukerId = p.brukerId";
+    $sql = "SELECT b.brukerId, b.epost, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjønn 
+            FROM Bruker b JOIN Profil p ON b.brukerId = p.brukerId";
     $result = mysqli_query($conn, $sql);
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
