@@ -21,17 +21,17 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
         );
     ";
 
-    /*$queries['createProfil'] = "
+    $queries['createProfil'] = "
         CREATE OR REPLACE TABLE Profil (
             brukerId INT PRIMARY KEY,
             navn VARCHAR(50) NOT NULL,
             etternavn VARCHAR(50) NOT NULL,
             adresse VARCHAR(100),
             mobilNummer VARCHAR(15),
-            kjønn ENUM('M', 'F', 'O') NOT NULL,
-            FOREIGN KEY (brukerId) REFERENCES Bruker(brukerId)
+            kjonn ENUM('M', 'F', 'O') NOT NULL,
+            FOREIGN KEY (brukerId) REFERENCES Bruker(id)
         );
-    ";*/
+    ";
 
     $queries['createRomType'] = "
         CREATE OR REPLACE TABLE RomType (
@@ -148,7 +148,7 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
     ";
 
     $queries['insertRoller'] = "
-        INSERT INTO BrukerRolle (navn) VALUES ('gjest'), ('bruker'), ('administrativ');
+        INSERT INTO BrukerRolle (navn) VALUES ('gjest'), ('bruker'), ('admin');
     ";
 
     /*$queries['insertRolleRegister'] = "

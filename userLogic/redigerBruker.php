@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit User</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 
 
 <?php
-include "../../../assets/inc/dbFunctions.inc.php";
+include "../service/profilService.inc.php";
 
 // Henter  brukerID fra URL
 $brukerId = $_GET['id'];
@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $etternavn = $_POST['etternavn'];
     $adresse = $_POST['adresse'];
     $mobilNummer = $_POST['mobilNummer'];
-    $kjønn = $_POST['kjønn'];
+    $kjonn = $_POST['kjonn'];
 
     // Kaller updateUser funksjonen for å gjøre endringene
-    updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $mobilNummer, $kjønn);
+    updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $mobilNummer, $kjonn);
     header("Location: brukerOversikt.php");
     exit();
 }
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="tilbakeKnapp">
     <a href="brukerOversikt.php">
         <button type="button">Tilbake til bruker oversikt</button>
-        <br></br>
+        <br>
     </a>
     <br>
 </div>
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="edit-form1">
     <h4>Rediger bruker:</h4>
-    <br></br>
+    <br>
     <form action="" method="POST">
         <div class="mb-3">
             <label for="epost" class="form-label">Email</label>
@@ -75,11 +75,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class="col">
                 <label class="form-label"></label>
-                <select class="form-control" name="Kjønn" required>
-                    <option value="" disabled selected>Velg kjønn</option>
-                    <option value="Women">Kvinne</option>
-                    <option value="Men">Mann</option>
-                    <option value="Other">Annet</option>
+                <select class="form-control" name="kjonn" required>
+                    <option value="" disabled selected>Velg kjonn</option>
+                    <option value="F">Kvinne</option>
+                    <option value="M">Mann</option>
+                    <option value="O">Annet</option>
                 </select>
             </div>
         <button type="submit" class="btn btn-primary">Update</button>
