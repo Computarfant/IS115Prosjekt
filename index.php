@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../cssDesign/main.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 
 
 <div class="image-container">
-    <img src="../../image/MOTEL.jpg" alt="Description of the image" style="max-width: 100%; height: auto;">
+    <img src="assets/image/MOTEL.jpg" alt="Description of the image" style="max-width: 100%; height: auto;">
 </div>
 
 

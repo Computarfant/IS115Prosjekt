@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../cssDesign/bruker.css">
+    <link rel="stylesheet" href="../css/bruker.css">
    
 
 </head>
 <body>
 
 <?php
-include "../../../assets/inc/dbFunctions.inc.php";
+include "../service/profilService.inc.php";
 $users = getAllUsers(); // Calls the getAllUsers function
 ?>
 
@@ -45,18 +45,18 @@ $users = getAllUsers(); // Calls the getAllUsers function
             <?php if (!empty($users)): ?>
                 <?php foreach ($users as $user): ?>
                     <tr>
-                        <td><?php echo $user['brukerId']; ?></td>
+                        <td><?php echo $user['id']; ?></td>
                         <td><?php echo $user['epost']; ?></td>
                         <td><?php echo $user['navn']; ?></td>
                         <td><?php echo $user['etternavn']; ?></td>
                         <td><?php echo $user['adresse']; ?></td>
                         <td><?php echo $user['mobilNummer']; ?></td>
-                        <td><?php echo $user['kjønn']; ?></td>
+                        <td><?php echo $user['kjonn']; ?></td>
                         <td>
-                            <a href="redigerBruker.php?id=<?php echo $user['brukerId']; ?>" class="btn btn-primary">Edit</a>
+                            <a href="redigerBruker.php?id=<?php echo $user['id']; ?>" class="btn btn-primary">Edit</a>
 
-                            <a href="slettBruker.php?id=<?php echo $user['brukerId']; ?>" class="btn btn-danger btn-sm" 
-                              onclick="return confirm('Er du sikker på at du vil slette denne brukeren?');">Delete</a>
+                            <a href="slettBruker.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm"
+                               onclick="return confirm('Er du sikker på at du vil slette denne brukeren?');">Delete</a>
 
                         </td>
                     

@@ -1,9 +1,10 @@
 ﻿<?php
 
-include "config.inc.php"; 
+include "../inc/config.inc.php";
 
 // Lager ny bruker med tilknyttet profil
-function createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer, $kjønn) {
+function createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer, $kjonn)
+{
     global $conn;
 
     mysqli_begin_transaction($conn);
@@ -18,9 +19,9 @@ function createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer,
         $brukerId = mysqli_insert_id($conn);
 
         // Insert i Profil tabellen
-        $sqlProfil = "INSERT INTO Profil (brukerId, navn, etternavn, adresse, mobilNummer, kjønn) VALUES (?, ?, ?, ?, ?, ?)";
+        $sqlProfil = "INSERT INTO Profil (brukerId, navn, etternavn, adresse, mobilNummer, kjonn) VALUES (?, ?, ?, ?, ?, ?)";
         $stmtProfil = mysqli_prepare($conn, $sqlProfil);
-        mysqli_stmt_bind_param($stmtProfil, "isssss", $brukerId, $navn, $etternavn, $adresse, $mobilnummer, $kjønn);
+        mysqli_stmt_bind_param($stmtProfil, "isssss", $brukerId, $navn, $etternavn, $adresse, $mobilnummer, $kjonn);
         mysqli_stmt_execute($stmtProfil);
 
         mysqli_commit($conn);
@@ -36,21 +37,20 @@ function createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer,
 
 function getAllUsers() {
     global $conn;
-    $sql = "SELECT b.brukerId, b.epost, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjønn FROM Bruker b JOIN Profil p ON b.brukerId = p.brukerId";
+    $sql = "SELECT b.id, b.epost, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjonn 
+            FROM Bruker b LEFT JOIN Profil p ON b.id = p.brukerId";
     $result = mysqli_query($conn, $sql);
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 
 
-
-
 function getUserById($brukerId) {
     global $conn;
 
-    $sql = "SELECT b.brukerId, b.epost, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjønn 
+    $sql = "SELECT b.id, b.epost, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjonn 
             FROM Bruker b 
-            JOIN Profil p ON b.brukerId = p.brukerId
-            WHERE b.brukerId = ?";
+            LEFT JOIN Profil p ON b.id = p.brukerId
+            WHERE b.id = ?";
     
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, "i", $brukerId);
@@ -61,22 +61,22 @@ function getUserById($brukerId) {
     return mysqli_fetch_assoc($result);
 }
 
-function updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $mobilNummer, $kjønn) {
+
+function updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $mobilNummer, $kjonn) {
     global $conn;
 
     // Oppdaterer Bruker tabellen (email and password)
-    $sqlUpdateBruker = "UPDATE Bruker SET epost = ?, passord = ? WHERE brukerId = ?";
+    $sqlUpdateBruker = "UPDATE Bruker SET epost = ?, passord = ? WHERE id = ?";
     $stmtUpdateBruker = mysqli_prepare($conn, $sqlUpdateBruker);
     mysqli_stmt_bind_param($stmtUpdateBruker, "ssi", $epost, $passord, $brukerId);
     mysqli_stmt_execute($stmtUpdateBruker);
 
     // Oppdaterer Profil tabellen (name, last name, address, mobile number, gender)
-    $sqlUpdateProfil = "UPDATE Profil SET navn = ?, etternavn = ?, adresse = ?, mobilNummer = ?, kjønn = ? WHERE brukerId = ?";
+    $sqlUpdateProfil = "UPDATE Profil SET navn = ?, etternavn = ?, adresse = ?, mobilNummer = ?, kjonn = ? WHERE brukerId = ?";
     $stmtUpdateProfil = mysqli_prepare($conn, $sqlUpdateProfil);
-    mysqli_stmt_bind_param($stmtUpdateProfil, "sssssi", $navn, $etternavn, $adresse, $mobilNummer, $kjønn, $brukerId);
+    mysqli_stmt_bind_param($stmtUpdateProfil, "sssssi", $navn, $etternavn, $adresse, $mobilNummer, $kjonn, $brukerId);
     mysqli_stmt_execute($stmtUpdateProfil);
 }
-
 
 
 function deleteUser($brukerId) {
@@ -92,7 +92,7 @@ function deleteUser($brukerId) {
         mysqli_stmt_execute($stmtProfil);
 
         // Sletter fra Bruker tabellen
-        $sqlBruker = "DELETE FROM Bruker WHERE brukerId = ?";
+        $sqlBruker = "DELETE FROM Bruker WHERE id = ?";
         $stmtBruker = mysqli_prepare($conn, $sqlBruker);
         mysqli_stmt_bind_param($stmtBruker, "i", $brukerId);
         mysqli_stmt_execute($stmtBruker);
@@ -111,7 +111,5 @@ function deleteUser($brukerId) {
 //Tester til funksjonene.
 
 
-
-?>
 
 

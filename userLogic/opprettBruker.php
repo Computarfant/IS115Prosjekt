@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="../../../cssDesign/main.css">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 
 <body>
@@ -58,11 +58,11 @@
             </div>
             <div class="col">
                 <label class="form-label"></label>
-                <select class="form-control" name="Kjønn" required>
-                    <option value="" disabled selected>Velg kjønn</option>
-                    <option value="Women">Kvinne</option>
-                    <option value="Men">Mann</option>
-                    <option value="Other">Annet</option>
+                <select class="form-control" name="kjonn" required>
+                    <option value="" disabled selected>Velg kjonn</option>
+                    <option value="F">Kvinne</option>
+                    <option value="M">Mann</option>
+                    <option value="O">Annet</option>
                 </select>
             </div>
             <div>
@@ -75,7 +75,7 @@
 
 
 <?php
-include "../../../assets/inc/dbFunctions.inc.php"; 
+include "../service/profilService.inc.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Henter form data
@@ -85,10 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $etternavn = $_POST['Etternavn'];
     $adresse = $_POST['Adresse'];
     $mobilnummer = $_POST['Mobilnummer'];
-    $kjønn = $_POST['Kjønn'];
+    $kjonn = $_POST['kjonn'];
 
     // kaller createUser funksjonen fra db functions
-    if (createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer, $kjønn)) {
+    if (createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer, $kjonn)) {
         echo "User created successfully!";
         header("Location: brukerOversikt.php");
     } else {

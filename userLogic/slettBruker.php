@@ -1,5 +1,5 @@
 <?php
-include "../../../assets/inc/dbFunctions.inc.php";
+include "../service/profilService.inc.php";
 
 // Sjekker om en bruker ID er gitt
 if (isset($_GET['id'])) {
