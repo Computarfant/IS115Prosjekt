@@ -8,17 +8,22 @@ function mapTilModel($rad) {
         $rad['navn'],
         $rad['beskrivelse'],
         $rad['pris'],
-        $rad['maxGjester']
+        $rad['maxGjester'],
+        $rad['ledigeRom']
     );
 }
 function searchAvailebleRooms($innsjekking, $utsjekking): array
 {
     $db = database();
 
-    $sql = $db->prepare("SELECT * FROM Rom r
+    $sql = $db->prepare("SELECT rt.*, COUNT(r.id) AS ledigeRom
+                                FROM Rom AS r
                                 INNER JOIN romType rt ON r.romTypeId = rt.id
                                 WHERE r.id NOT IN (
-                                    SELECT romId FROM booking WHERE startPeriode <= ? AND sluttPeriode >= ?
+                                    SELECT romId 
+                                    FROM booking 
+                                        WHERE startPeriode <= ? 
+                                        AND sluttPeriode >= ?
                                 )
                                 GROUP BY r.romTypeId");
 
