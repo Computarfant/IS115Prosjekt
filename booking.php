@@ -1,6 +1,7 @@
 <?php
     require_once 'service/bookingService.inc.php';
     require_once 'components/romTypeCard.php';
+    //require_once 'assets/image';
 
     $ledigeRomTyper = [];
     $innsjekking = "";
