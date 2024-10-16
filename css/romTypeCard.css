@@ -1,0 +1,50 @@
+﻿/* Container for the cards */
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards horizontally */
+    gap: 20px; /* Space between the cards */
+    padding: 20px;
+}
+
+/* Individual card styling */
+.card {
+    position: relative;
+    width: 250px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: white;
+    margin: 10px; /* Margin for spacing */
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card h1, .card p, .card h3 {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.card h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card p {
+    font-size: 16px;
+}
+
+.card h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
