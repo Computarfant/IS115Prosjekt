@@ -101,9 +101,9 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
 
     $queries['insertRoomTypes'] = "
         INSERT INTO RomType (navn, beskrivelse, pris, maxGjester) VALUES 
-        ('Single Room', 'One room with doublebed and a bathroom.', 750, 2),
-        ('Double Room', 'Two bedrooms and a living room for with a sleeping couch two one bathroom.', 1250, 5),
-        ('Suite', 'Luxerious room with seperate living and sleeping areas 3 bedrooms.', 1750, 6);
+        ('Standard', 'One room with doublebed and a bathroom.', 750, 2),
+        ('Double', 'Two bedrooms and a living room for with a sleeping couch two one bathroom.', 1250, 5),
+        ('Suite', 'Luxurious room with separate living and sleeping areas 3 bedrooms.', 1750, 6);
     ";
 
     $queries['insertRoom'] = "
