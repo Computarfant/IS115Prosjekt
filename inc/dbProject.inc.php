@@ -1,23 +1,22 @@
 ﻿<?php
 
-function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
+function dbSetupSQL(): array {
     $queries = array();
-
-    $queries['createBruker'] = "
-        CREATE OR REPLACE TABLE Bruker (
-            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            epost VARCHAR(100) NOT NULL UNIQUE,
-            passord VARCHAR(500) NOT NULL,
-            opprettet DATETIME DEFAULT CURRENT_TIMESTAMP,
-            ckey VARCHAR(100) NOT NULL DEFAULT ' ',
-            ctime VARCHAR(100) NOT NULL DEFAULT ' '
-        );
-    ";
 
     $queries['createRolle'] = "
         CREATE OR REPLACE TABLE BrukerRolle (
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             navn Varchar(100) NOT NULL
+        );
+    ";
+    $queries['createBruker'] = "
+        CREATE OR REPLACE TABLE Bruker (
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            epost VARCHAR(100) NOT NULL UNIQUE,
+            passord VARCHAR(500) NOT NULL,  
+            opprettet DATETIME DEFAULT CURRENT_TIMESTAMP,
+            rolleId INT DEFAULT 1,
+            FOREIGN KEY (rolleId) REFERENCES BrukerRolle(id)
         );
     ";
 
@@ -26,9 +25,9 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
             brukerId INT PRIMARY KEY,
             navn VARCHAR(50) NOT NULL,
             etternavn VARCHAR(50) NOT NULL,
-            adresse VARCHAR(100),
-            mobilNummer VARCHAR(15),
-            kjonn ENUM('M', 'F', 'O') NOT NULL,
+            adresse VARCHAR(100) DEFAULT NULL,
+            mobilNummer VARCHAR(15) DEFAULT NULL,   
+            kjonn ENUM('M', 'F', 'O') DEFAULT NULL,
             FOREIGN KEY (brukerId) REFERENCES Bruker(id)
         );
     ";
@@ -46,24 +45,26 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
     $queries['createRom'] = "
         CREATE OR REPLACE TABLE Rom (
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            navn VARCHAR(50) NOT NULL,
             etasje INT NOT NULL,
-            romTypeId INT NOT NULL,
-            FOREIGN KEY (romTypeId) REFERENCES RomType(id)
+            beskrivelse VARCHAR(255) NOT NULL,
+            rtid INT NOT NULL,
+            FOREIGN KEY (rtid) REFERENCES RomType(id)
         );
     ";
 
     $queries['createBooking'] = "
         CREATE OR REPLACE TABLE Booking (
             id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            brukerId INT NOT NULL,
-            romId INT NOT NULL,
+            bid INT NOT NULL,
+            rid INT NOT NULL,
             antallVoksne INT NOT NULL,
-            antallBarn INT DEFAULT 0,
+            antallChildren INT DEFAULT 0,
             startPeriode DATE NOT NULL,
             sluttPeriode DATE NOT NULL,
             totalPris DECIMAL(10, 2) NOT NULL,
-            FOREIGN KEY (brukerId) REFERENCES Bruker(id),
-            FOREIGN KEY (romId) REFERENCES Rom(id)
+            FOREIGN KEY (bid) REFERENCES Bruker(id),
+            FOREIGN KEY (rid) REFERENCES Rom(id)
         );
     ";
 
@@ -99,63 +100,50 @@ function dbSetupSQL($email = "default@gmail.com", $pass = "password"): array {
         );
     ";*/
 
-    $queries['insertRoomTypes'] = "
+    $queries['insertRomTypes'] = "
         INSERT INTO RomType (navn, beskrivelse, pris, maxGjester) VALUES 
         ('Standard', 'One room with doublebed and a bathroom.', 750, 2),
         ('Double', 'Two bedrooms and a living room for with a sleeping couch two one bathroom.', 1250, 5),
         ('Suite', 'Luxurious room with separate living and sleeping areas 3 bedrooms.', 1750, 6);
     ";
 
-    $queries['insertRoom'] = "
-        INSERT INTO Rom (etasje, romTypeId) VALUES 
-        (1, 1),
-        (1, 1),
-        (1, 1),
-        (1, 2),
-        (1, 3),
-        (2, 1),
-        (2, 1),
-        (2, 2),
-        (2, 2),
-        (2, 3),
-        (3, 1),
-        (3, 1),
-        (3, 2),
-        (3, 2),
-        (3, 3),
-        (4, 1),
-        (4, 2),
-        (4, 2),
-        (4, 3),
-        (4, 3),
-        (5, 2),
-        (5, 2),
-        (5, 3),
-        (5, 3),
-        (5, 3)
+    $queries['insertRom'] = "
+        INSERT INTO Rom (navn, etasje, beskrivelse, rtid) VALUES 
+        ('101', 1, 'standard fattigmans rom', 1),
+        ('102', 1, 'standard au', 1),
+        ('103', 1, 'double 1', 2),
+        ('104', 1, 'double 2', 2),
+        ('105', 1, 'suite rik gutt', 3),
+        ('201', 2, 'standard fattigmans rom', 1),
+        ('202', 2, 'standard au', 1),
+        ('203', 2, 'double 1', 2),
+        ('204', 2, 'double 2', 2),
+        ('205', 2, 'suite rik gutt', 3),
+        ('301', 3, 'standard fattigmans rom', 1),
+        ('302', 3, 'standard au', 1),
+        ('303', 3, 'double 1', 2),
+        ('304', 3, 'double 2', 2),
+        ('305', 3, 'suite rik gutt', 3),
+        ('401', 4, 'standard fattigmans rom', 1),
+        ('402', 4, 'standard au', 1),
+        ('403', 4, 'double 1', 2),
+        ('404', 4, 'double 2', 2),
+        ('405', 4, 'suite rik gutt', 3),
+        ('501', 5, 'standard fattigmans rom', 1),
+        ('502', 5, 'standard au', 1),
+        ('503', 5, 'double 1', 2),
+        ('504', 5, 'double 2', 2),
+        ('505', 5, 'suite rik gutt', 3)
     ";
 
-    /*$queries['insertLoyaltyPrograms'] = "
-        INSERT INTO LoyaltyProgram (nivåNavn, beskrivelse, poengkrav) VALUES
-        ('Silver', 'Basic loyalty program for frequent customers.', 100),
-        ('Gold', 'Advanced loyalty program with added perks.', 500),
-        ('Platinum', 'Top-tier loyalty program for VIPs.', 1000);
-    ";*/
-
-    $password = password_hash($pass, PASSWORD_DEFAULT);
+    /*$password = password_hash($pass, PASSWORD_DEFAULT);
     $queries['insertBruker'] = "
         INSERT INTO Bruker (epost, passord, opprettet, ckey, ctime) VALUES ('$email', '$password', '', '', '');
-    ";
+    ";*/
 
     $queries['insertRoller'] = "
-        INSERT INTO BrukerRolle (navn) VALUES ('gjest'), ('bruker'), ('admin');
+        INSERT INTO BrukerRolle (navn) VALUES ('gjest'), ('admin');
     ";
-
-    /*$queries['insertRolleRegister'] = "
-        INSERT INTO Rolle_register (rolleId, brukerId) VALUES 
-        (1, 1), gjest
-        (2, 3),  admin
-    ";*/
 
     return $queries;
 }

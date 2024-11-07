@@ -10,11 +10,6 @@ $config["db"]["database"] = "IS115Database";
 $config["general"]["projectRoot"] = "";
 $config["general"]["pepper"] = "IAmBadAtSecurity";
 
-//Mail configs
-/*$config["mail"]["smtpServer"] = "smtp.gmail.com";
-$config["mail"]["username"] = "mail";
-$config["mail"]["password"] = "password";*/
-
 $conn = mysqli_connect($config["db"]["host"], $config["db"]["user"], $config["db"]["pass"], $config["db"]["database"]);
 
 // Check connection

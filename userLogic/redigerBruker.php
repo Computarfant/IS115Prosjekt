@@ -22,7 +22,7 @@ $user = getUserById($brukerId);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Henter oppdatert data fra formen
     $epost = $_POST['epost'];
-    $passord = $_POST['passord'];
+    $passord = password_hash($_POST['passord'], PASSWORD_DEFAULT);
     $navn = $_POST['navn'];
     $etternavn = $_POST['etternavn'];
     $adresse = $_POST['adresse'];
