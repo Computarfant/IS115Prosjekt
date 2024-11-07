@@ -15,11 +15,13 @@ include "../service/romAdmin.inc.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Henter form data
+    $navn = $_POST['navn'];
+    $beskrivelse = $_POST['beskrivelse'];
     $etasje = $_POST['etasje'];
     $romTypeId = $_POST['romTypeId'];
     
     // kaller createUser funksjonen fra db functions
-    if (createRoom($etasje, $romTypeId)) {
+    if (createRoom($navn, $beskrivelse, $etasje, $romTypeId)) {
         echo "Rom opprettet!";
         header("Location: romOversikt.php");
     } else {
@@ -46,12 +48,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <form action="" method="post">
         <div class = "row">
             <div class ="col">
-                <label class ="form-label"></label>
-                <input type="text" class="form-control" name="etasje" placeholder="Etasje">
+                <label class ="form-label">
+                <input type="text" class="form-control" name="navn" placeholder="Navn"></label>
             </div>
             <div class ="col">
-                <label class ="form-label"></label>
-                <input type="text" class="form-control" name="romTypeId" placeholder="romTypeId">
+                <label class ="form-label">
+                <input type="text" class="form-control" name="beskrivelse" placeholder="Beskrivelse"></label>
+            </div>
+            <div class ="col">
+                <label class ="form-label">
+                <input type="text" class="form-control" name="etasje" placeholder="Etasje"></label>
+            </div>
+            <div class ="col">
+                <label class ="form-label">
+                <input type="text" class="form-control" name="romTypeId" placeholder="romTypeId"></label>
             </div>
         </div>
 

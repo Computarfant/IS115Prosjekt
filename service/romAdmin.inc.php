@@ -7,7 +7,7 @@ function getAllRooms() {
     global $conn;
 
     // SQL spørring for å hente rom informasjon
-    $sql = "SELECT id, etasje, romTypeId 
+    $sql = "SELECT id, navn, beskrivelse, etasje, rtId 
             FROM Rom"; 
 
     $result = mysqli_query($conn, $sql);
@@ -17,7 +17,7 @@ function getAllRooms() {
     // Henter resultatene og lager rom objekter
     while ($row = mysqli_fetch_assoc($result)) {
         // Lager et rom objekt for dataen som har blitt innhentet
-        $rooms[] = new rom($row['id'], $row['etasje'], $row['romTypeId'], null); // Setting romType to null for now
+        $rooms[] = new rom($row['id'],$row['navn'],$row['beskrivelse'], $row['etasje'], $row['rtId'], null); // Setting romType to null for now
     }
 
     return $rooms; // Return the array of rom objects
@@ -27,7 +27,7 @@ function getAllRooms() {
 function getRoomDetails($roomId) {
     global $conn;
 
-    $sql = "SELECT id, etasje, romTypeId FROM rom WHERE id = ?";
+    $sql = "SELECT id, navn, beskrivelse, etasje, rtid FROM rom WHERE id = ?";
     $stmt = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt, 'i', $roomId);
     mysqli_stmt_execute($stmt);
@@ -35,9 +35,9 @@ function getRoomDetails($roomId) {
     $room = mysqli_fetch_assoc($result);
     
     
-    $romType = getRoomTypeById($room['romTypeId']); 
+    $romType = getRoomTypeById($room['rtid']); 
 
-    return new rom($room['id'], $room['etasje'], $room['romTypeId'], $romType);
+    return new rom($room['id'], $room['navn'],$room['beskrivelse'], $room['etasje'], $room['rtid'], $romType);
 }
 
 function getRoomById($roomId) {
@@ -50,19 +50,19 @@ function getRoomById($roomId) {
     
     if ($row = mysqli_fetch_assoc($result)) {
         // Henter romType-data
-        $romType = getRoomTypeById($row['romTypeId']); 
+        $romType = getRoomTypeById($row['rtid']); 
         // Returner rom-objekt med romType-data
-        return new rom($row['id'], $row['etasje'], $row['romTypeId'], $romType);
+        return new rom($row['id'], $row['navn'],$row['beskrivelse'], $row['etasje'], $row['rtid'], $romType);
     }
     // Returner null hvis romType ikke finnes
     return null; 
 }
 
-function getRoomTypeById($romTypeId) {
+function getRoomTypeById($rtid) {
     global $conn;
     $sql = "SELECT * FROM RomType WHERE id = ?";
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $romTypeId);
+    mysqli_stmt_bind_param($stmt, "i", $rtid);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt); 
     
@@ -85,23 +85,23 @@ function getAllRomTypes() {
     return $romTypes;
 }
 
-function updateRoom($roomId, $etasje, $romTypeId) {
+function updateRoom($roomId, $navn, $beskrivelse, $etasje, $rtid) {
     global $conn;
-    $sqlUpdateRoom = "UPDATE rom SET etasje = ?, romTypeId = ? WHERE id = ?";
+    $sqlUpdateRoom = "UPDATE rom SET etasje = ?, rtid = ? WHERE id = ?";
     $stmtUpdateRoom = mysqli_prepare($conn, $sqlUpdateRoom);
-    mysqli_stmt_bind_param($stmtUpdateRoom, "iii", $etasje, $romTypeId, $roomId);
+    mysqli_stmt_bind_param($stmtUpdateRoom, "ssiii", $navn, $beskrivelse, $etasje, $rtid, $roomId);
     mysqli_stmt_execute($stmtUpdateRoom);
 }
 
 
-function createRoom($etasje, $romTypeId) {
+function createRoom($navn, $beskrivelse, $etasje, $rtid, ) {
     global $conn;
     
     // Injecter nytt rom i rom tabellen i databasen
-    $sqlInsertRoom = "INSERT INTO rom (etasje, romTypeId) VALUES (?, ?)";
+    $sqlInsertRoom = "INSERT INTO rom (navn, beskrivelse, etasje, rtid) VALUES (?, ?, ?, ?)";
     
     $stmtInsertRoom = mysqli_prepare($conn, $sqlInsertRoom);
-    mysqli_stmt_bind_param($stmtInsertRoom, "ii", $etasje, $romTypeId);
+    mysqli_stmt_bind_param($stmtInsertRoom, "ssii", $navn, $beskrivelse, $etasje, $rtid);
     
     
     if (mysqli_stmt_execute($stmtInsertRoom)) {
@@ -109,7 +109,7 @@ function createRoom($etasje, $romTypeId) {
         $newRoomId = mysqli_insert_id($conn);
         
         // Returnerer det nye rom objektet 
-        return new rom($newRoomId, $etasje, $romTypeId, null);
+        return new rom($newRoomId, $navn, $beskrivelse, $etasje, $rtid, null);
     } else {
         
         return null; 

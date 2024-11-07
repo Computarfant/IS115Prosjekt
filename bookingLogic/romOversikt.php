@@ -32,6 +32,8 @@ $rom = getAllRooms();
         <thead>
             <tr>
                 <th>Rom ID</th>
+                <th>Navn</th>
+                <th>Beskrivelse</th>
                 <th>Etasje</th>
                 <th>Rom Type ID</th>
             </tr>
@@ -41,8 +43,10 @@ $rom = getAllRooms();
                 <?php foreach ($rom as $room): ?> 
                     <tr>
                         <td><?php echo $room->id; ?></td> <!-- Henter rom objektets egenskaper -->
+                        <td><?php echo $room->navn; ?></td>
+                        <td><?php echo $room->beskrivelse; ?></td>
                         <td><?php echo $room->etasje; ?></td>
-                        <td><?php echo $room->romTypeId; ?></td>
+                        <td><?php echo $room->rtid; ?></td>
                         <td>
                             <a href="redigerRom.php?id=<?php echo $room->id; ?>" class="btn btn-primary">Edit</a>
 

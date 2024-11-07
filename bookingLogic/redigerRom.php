@@ -19,20 +19,22 @@ $roomId = $_GET['id'];
 $room = getRoomById($roomId);
 
 // Henter romtype data
-$romType = getRoomTypeById($room->romTypeId);
+$romType = getRoomTypeById($room->rtid);
 
 $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Henter oppdatert data fra formen
+    $navn = $_POST['navn'];
+    $beskrivelse = $_POST['beskrivelse'];
     $etasje = $_POST['etasje'];
     $romTypeId = $_POST['romTypeId'];
 
-    updateRoom($roomId, $etasje, $romTypeId);
+    updateRoom($roomId, $navn, $beskrivelse, $etasje, $romTypeId);
 
     // Henter oppdatert romdata og romtype data
     $room = getRoomById($roomId);
-    $romType = getRoomTypeById($room->romTypeId);
+    $romType = getRoomTypeById($room->rtid);
 
     $message = "Rommet er oppdatert!";
 }

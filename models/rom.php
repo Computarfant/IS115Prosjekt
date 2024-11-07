@@ -1,14 +1,18 @@
 <?php
 class rom {
-    public $id;              
+    public $id;
+    public $navn;
+    public $beskrivelse;
     public $etasje;         
-    public $romTypeId;      
+    public $rtid;
     public $romType;         
 
-    public function __construct($id, $etasje, $romTypeId, $romType) {
-        $this->id = $id;           
+    public function __construct($id, $navn, $beskrivelse, $etasje, $rtid, $romType) {
+        $this->id = $id;
+        $this->navn = $navn;
+        $this->beskrivelse = $beskrivelse;
         $this->etasje = $etasje;    
-        $this->romTypeId = $romTypeId;
+        $this->rtid = $rtid;
         $this->romType = $romType;  
     }
   
