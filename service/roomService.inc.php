@@ -1,6 +1,6 @@
 <?php
-require 'inc/init.inc.php';
-require 'models/romType.php';
+require '../inc/init.inc.php';
+require '../models/romType.php';
 
 function mapTilModel($rad) {
     return new romType(

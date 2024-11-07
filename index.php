@@ -12,9 +12,10 @@
 </div>
 
 <div class="navbar">
-    <a href="booking.php">Booking</a>
+    <a href="bookingLogic/booking.php">Booking</a>
     <a href="userLogic/brukerOversikt.php">Bruker oversikt</a>
     <a href="userLogic/profil.php">Profil</a>
+    <a href="bookingLogic/romOversikt.php">Rom administrering</a>
 </div>
 
 

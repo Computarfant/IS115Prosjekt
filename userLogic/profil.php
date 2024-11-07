@@ -8,6 +8,13 @@
 
 <h1>Din profil</h1>
 
+
+<div class="tilbakeKnapp">
+    <a href="../index.php">
+        <button type="button">Tilbake til start</button>
+        <br></br>
+    </a>
+    <br>
     
 </body>
 </html>
