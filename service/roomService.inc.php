@@ -18,14 +18,14 @@ function searchAvailebleRooms($innsjekking, $utsjekking): array
 
     $sql = $db->prepare("SELECT rt.*, COUNT(r.id) AS ledigeRom
                                 FROM Rom AS r
-                                INNER JOIN romType rt ON r.romTypeId = rt.id
+                                INNER JOIN romType rt ON r.rtid = rt.id
                                 WHERE r.id NOT IN (
-                                    SELECT romId 
+                                    SELECT rid 
                                     FROM booking 
                                         WHERE startPeriode <= ? 
                                         AND sluttPeriode >= ?
                                 )
-                                GROUP BY r.romTypeId");
+                                GROUP BY r.rtid");
 
     $sql->bind_param("ss", $innsjekking, $utsjekking);
     $sql->execute();

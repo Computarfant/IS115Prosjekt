@@ -11,7 +11,7 @@ function createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer,
 
     try {
         // Insert i Bruker tabellen
-        $sqlBruker = "INSERT INTO Bruker (epost, passord, ckey, ctime) VALUES (?, ?, '', '')";
+        $sqlBruker = "INSERT INTO Bruker (epost, passord, rolleId) VALUES (?, ?, '1')";
         $stmtBruker = mysqli_prepare($conn, $sqlBruker);
         mysqli_stmt_bind_param($stmtBruker, "ss", $epost, $passord);
         mysqli_stmt_execute($stmtBruker);
