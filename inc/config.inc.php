@@ -1,7 +1,7 @@
 ﻿<?php
 //lånt kode
 //Database configs
-$config["db"]["host"] = "localhost:3309";
+$config["db"]["host"] = "localhost:3306";
 $config["db"]["user"] = "root";
 $config["db"]["pass"] = "";
 $config["db"]["database"] = "IS115Database";

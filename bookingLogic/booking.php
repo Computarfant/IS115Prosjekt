@@ -1,6 +1,6 @@
 <?php
-    require_once 'service/bookingService.inc.php';
-    require_once 'components/romTypeCard.php';
+    require_once '../service/bookingService.inc.php';
+    require_once '../components/romTypeCard.php';
     //require_once 'assets/image';
 
     $ledigeRomTyper = [];
@@ -24,10 +24,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Booking</title>
-        <link rel="stylesheet" href="css/main.css">
-        <link rel="stylesheet" href="css/romTypeCard.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/romTypeCard.css">
 </head>
 <body>
+
+<div class="tilbakeKnapp">
+    <a href="../index.php">
+        <button type="button">Tilbake til start</button>
+        <br></br>
+    </a>
+    <br>
+
 
 <div class="container">
     <h1>Booking</h1>
@@ -35,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <div class="navbar">
     <a href="booking.php">Booking</a>
-    <a href="userLogic/brukerOversikt.php">Bruker oversikt</a>
-    <a href="userLogic/profil.php">Profil</a>
+    <a href="../userLogic/brukerOversikt.php">Bruker oversikt</a>
+    <a href="../userLogic/profil.php">Profil</a>
 </div>
 
 <form method="POST">
