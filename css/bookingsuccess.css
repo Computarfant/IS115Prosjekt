@@ -1,0 +1,96 @@
+body {
+    background: #666699; /* Purple background (consistent with your theme) */
+    color: white; /* White text */
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    padding-top: 10vh;
+    box-sizing: border-box;
+    min-height: 100vh;
+    max-width: 60rem;
+    margin: 0 auto;
+    font-size: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 2rem;
+    background-color: #fff; /* White background for the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for the container */
+    margin-top: 5vh; /* Added margin-top to position container */
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #000000; /* Blue color for the heading */
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.booking-summary {
+    margin: 2rem 0;
+    width: 100%; /* Ensure it stretches across the container */
+    padding: 1rem;
+    background-color: #f9f9f9; /* Slightly gray background for the summary */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add some shadow */
+}
+
+.booking-summary p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #333; /* Dark text color for readability */
+}
+
+.success-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.success-actions a {
+    display: inline-block;
+    margin: 1rem 0;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    background-color: #333; /* Blue color for the buttons */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 200px; /* Fixed button width for consistency */
+    text-align: center;
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue for hover effect */
+}
+
+button:focus {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+br {
+    margin-bottom: 10px; /* To avoid excessive space */
+}
+
+/* Adjusting button styles for better visual alignment */
+.success-actions a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

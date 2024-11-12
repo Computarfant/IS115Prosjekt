@@ -14,8 +14,11 @@
 <div class="navbar">
     <a href="bookingLogic/booking.php">Booking</a>
     <a href="userLogic/brukerOversikt.php">Bruker oversikt</a>
-    <a href="userLogic/profil.php">Profil</a>
-    <a href="bookingLogic/romOversikt.php">Rom administrering</a>
+    <a href="userLogic/profil.php">Din Profil</a>
+    <a href="roomAdminLogic/romOversikt.php">Rom administrering</a>
+    <a href="authentication/register.php">Registrer bruker</a>
+    <a href="authentication/dbsetup.php">Sett opp DB</a>
+    <a href="authentication/login.php">Logg inn</a>
 </div>
 
 
