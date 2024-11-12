@@ -34,6 +34,7 @@ if(isset($_POST['brukerDatabase'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
     <title>Setup</title>
 </head>
 <body>
@@ -59,6 +60,6 @@ if(isset($_POST['brukerDatabase'])){
     </form>
 
     <br>
-    <p><a href="<?=$pRoot;?>/"><button>Tilbake til Prosjektet</button></a></p>
+    <p><a href="../index.php"><button>Tilbake til Prosjektet</button></a></p>
 </body>
 </html>

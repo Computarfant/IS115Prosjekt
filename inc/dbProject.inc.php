@@ -54,19 +54,21 @@ function dbSetupSQL(): array {
     ";
 
     $queries['createBooking'] = "
-        CREATE OR REPLACE TABLE Booking (
-            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-            bid INT NOT NULL,
-            rid INT NOT NULL,
-            antallVoksne INT NOT NULL,
-            antallChildren INT DEFAULT 0,
-            startPeriode DATE NOT NULL,
-            sluttPeriode DATE NOT NULL,
-            totalPris DECIMAL(10, 2) NOT NULL,
-            FOREIGN KEY (bid) REFERENCES Bruker(id),
-            FOREIGN KEY (rid) REFERENCES Rom(id)
-        );
-    ";
+    CREATE OR REPLACE TABLE Booking (
+        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        bid INT NOT NULL,
+        rid INT NOT NULL,
+        antallVoksne INT NOT NULL,
+        antallBarn INT DEFAULT 0,
+        startPeriode DATE NOT NULL,
+        sluttPeriode DATE NOT NULL,
+        totalPris DECIMAL(10, 2) NOT NULL,
+        status ENUM('confirmed', 'canceled', 'pending') DEFAULT 'pending',  -- Added status column
+        FOREIGN KEY (bid) REFERENCES Bruker(id),
+        FOREIGN KEY (rid) REFERENCES Rom(id)
+    );
+";
+
 
 
     /*$queries['createRolleRegister'] = "

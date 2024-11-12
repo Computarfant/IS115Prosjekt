@@ -55,21 +55,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Logg inn</title>
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+
+<div class="tilbakeKnapp">
+    <a href="../index.php">
+        <button type="button">Tilbake til start</button>
+        <br></br>
+    </a>
+    <br>
+</div>
+
+
 <div style='max-width: 500px; margin: auto; text-align: center;'>
     <div>
         <form method="post" action="login.php">
             <h1>Logg inn</h1>
             <label for="epost">epost:<input type="email" name="epost" required><br></label>
-
+            <br></br>
             <label for="passord">Passord:<input type="password" name="passord" required><br></label>
-
+            <br></br>
             <button type="submit">Logg inn</button>
         </form>
         <p><a href="register.php"><button>Ingen Konto? Registrer deg her</button></a></p>
-
-        <p><a href="dbSetup.php"><button>Generate Database</button></a></p>
+        <br></br>
     </div>
 </div>
 </body>

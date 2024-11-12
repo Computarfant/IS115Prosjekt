@@ -4,8 +4,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
+<div class="tilbakeKnapp">
+    <a href="../index.php">
+        <button type="button">Tilbake til start</button>
+        <br></br>
+    </a>
+    <br>
+</div>
+
+
 <div style='max-width: 500px; margin: auto; text-align: center;'>
     <h1>Registrer</h1>
     <?php
@@ -26,13 +36,13 @@
     <form action='register.php' method='POST'>
         <label for="navn">First Name:</label><br>
         <input required type="text" id="navn" name="navn" value="<?= htmlspecialchars($_POST['navn'] ?? '') ?>"><br>
-
+        <br></br>
         <label for="etternavn">Last Name:</label><br>
         <input required type="text" id="etternavn" name="etternavn" value="<?= htmlspecialchars($_POST['etternavn'] ?? '') ?>"><br>
-
+        <br></br>
         <label for="epost">epost:</label><br>
         <input required type="email" id="epost" name="epost" value="<?= htmlspecialchars($_POST['epost'] ?? '') ?>"><br>
-
+        <br></br>
         <label for="password">Password:</label><br>
         <input required type="password" id="password" name="passord" value="<?= htmlspecialchars($_POST['passord'] ?? '') ?>"><br>
 
@@ -42,7 +52,7 @@
         <input type="hidden" id="mobilnummer" name="mobilnummer" value="<?= htmlspecialchars($_POST['mobilnummer'] ?? '') ?>"><br>
         <label for="kjonn"></label><br>
         <input type="hidden" id="kjonn" name="kjonn" value="<?= htmlspecialchars($_POST['kjonn'] ?? '') ?>"><br> -->
-
+        <br></br>
         <button type="submit" name="registrer">Opprett Konto</button>
     </form>
 
