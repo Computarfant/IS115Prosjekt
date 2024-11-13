@@ -1,3 +1,7 @@
+<?php
+require_once '../components/adminCheck.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

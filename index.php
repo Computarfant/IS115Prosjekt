@@ -1,9 +1,16 @@
+<?php
+// Only start the session if it’s not already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <title>Homepage</title>
 </head>
 <body>
 
@@ -11,15 +18,9 @@
     <h1>Motel booking tjeneste</h1>
 </div>
 
-<div class="navbar">
-    <a href="bookingLogic/booking.php">Booking</a>
-    <a href="userLogic/brukerOversikt.php">Bruker oversikt</a>
-    <a href="userLogic/profil.php">Din Profil</a>
-    <a href="roomAdminLogic/romOversikt.php">Rom administrering</a>
-    <a href="authentication/register.php">Registrer bruker</a>
-    <a href="authentication/dbsetup.php">Sett opp DB</a>
-    <a href="authentication/login.php">Logg inn</a>
-</div>
+<?php
+include 'components/navbar.php';
+?>
 
 
 <div class="container">
