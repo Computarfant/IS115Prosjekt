@@ -1,5 +1,6 @@
 <?php
 require '../service/romAdmin.inc.php';
+require_once '../components/adminCheck.php';
 
 if (isset($_GET['id'])) {
     $roomId = $_GET['id'];
