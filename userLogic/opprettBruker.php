@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+require_once '../components/adminCheck.php'
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="no">
 <head>
     <title>Confirm Booking</title>
     <link rel="stylesheet" href="../css/main.css">
