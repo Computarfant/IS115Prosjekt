@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="tilbakeKnapp">
     <a href="../index.php">
         <button type="button">Tilbake til start</button>
-        <br></br>
+        <br>
     </a>
     <br>
 
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     foreach ($groupedRooms as $roomType => $rooms) {
-        echo "<div class='room-type-container' id='{$roomType}' style='display:none;'>";
+        echo "<div class='room-type-container' id='$roomType' style='display:none;'>";
         foreach ($rooms as $rom) {
             RomTypeCard($rom, $innsjekking, $utsjekking);
         }

@@ -3,6 +3,12 @@ require '../inc/init.inc.php';
 require '../models/romType.php';
 require '../models/rom.php';
 
+/** Searches the database for all rooms avilable rooms for the period of time.
+ *
+ * @param $innsjekking      //Value for start date
+ * @param $utsjekking       //Value for end date
+ * @return array            //Returns array of all rooms available
+ */
 function searchAvailableRooms($innsjekking, $utsjekking): array
 {
     $db = database();
@@ -49,6 +55,13 @@ function searchAvailableRooms($innsjekking, $utsjekking): array
 }
 
 
+/** Checks if room is available and returns boolean value
+ *
+ * @param $roomId
+ * @param $startDate
+ * @param $endDate
+ * @return bool
+ */
 function isRoomAvailable($roomId, $startDate, $endDate) {
     global $conn;
 
@@ -69,6 +82,16 @@ function isRoomAvailable($roomId, $startDate, $endDate) {
     return $result->num_rows === 0;
 }
 
+/** Prosesserer booking og returner boolean
+ *
+ * @param $brukerId
+ * @param $roomId
+ * @param $numAdults
+ * @param $numChildren
+ * @param $startDate
+ * @param $endDate
+ * @return bool
+ */
 function processBooking($brukerId, $roomId, $numAdults, $numChildren, $startDate, $endDate) {
     global $conn;
 
@@ -94,7 +117,12 @@ function processBooking($brukerId, $roomId, $numAdults, $numChildren, $startDate
     return $stmt->affected_rows > 0;
 }
 
-//Denne kan bli brukt på din profil side for å avbestille bookinger/ordre oversikt
+
+/** Kanselerer booking
+ *
+ * @param $bookingId
+ * @return bool
+ */
 function cancelBooking($bookingId) {
     global $pdo;
     $stmt = $pdo->prepare("UPDATE Booking SET status = 'canceled' WHERE id = :bookingId");
@@ -103,6 +131,11 @@ function cancelBooking($bookingId) {
     return $stmt->rowCount() > 0;
 }
 
+/**Henter rom og type ved hjelp av romId
+ *
+ * @param $roomId
+ * @return rom|null
+ */
 function getRoomById($roomId) {
     global $conn;
 
@@ -142,26 +175,5 @@ function getRoomById($roomId) {
     }
 
     return null;
-}
-
-
-function getRoomTypeById($romTypeId) {
-    global $conn;
-    $sql = "SELECT * FROM RomType WHERE id = ?";
-    $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "i", $romTypeId);
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt); 
-    
-    if ($row = mysqli_fetch_assoc($result)) {
-        // Returnerer en instans av romType-klassen
-
-        //Debugging
-        //echo "<p>Debug: Room Type ID = $romTypeId</p>";
-        //echo "<p>Debug: Room Type Name = " . htmlspecialchars($row['navn']) . "</p>";
-
-        return new romType($row['id'], $row['navn'], $row['beskrivelse'], $row['pris'], $row['maxGjester'], null);
-    }
-    return null; 
 }
 
