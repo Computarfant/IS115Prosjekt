@@ -3,6 +3,16 @@
 include "../inc/config.inc.php";
 
 // Lager ny bruker med tilknyttet profil
+/**
+ * @param $epost
+ * @param $passord
+ * @param $navn
+ * @param $etternavn
+ * @param $adresse
+ * @param $mobilnummer
+ * @param $kjonn
+ * @return bool         // Returnerer True om bruker ble opprettet
+ */
 function createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer, $kjonn)
 {
     global $conn;
@@ -35,6 +45,10 @@ function createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer,
 }
 
 
+/** Henter alle brukere
+ *
+ * @return array        Returnerer alle brukere i en matrise
+ */
 function getAllUsers() {
     global $conn;
     $sql = "SELECT b.id, b.epost, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjonn 
@@ -44,6 +58,11 @@ function getAllUsers() {
 }
 
 
+/** Henter bruker av valgt brukerId
+ *
+ * @param $brukerId
+ * @return array|false|null
+ */
 function getUserById($brukerId) {
     global $conn;
 
@@ -62,6 +81,18 @@ function getUserById($brukerId) {
 }
 
 
+/** Oppdaterer brukeren den tilsvarende profilen
+ *
+ * @param $brukerId
+ * @param $epost
+ * @param $passord
+ * @param $navn
+ * @param $etternavn
+ * @param $adresse
+ * @param $mobilNummer
+ * @param $kjonn
+ * @return void
+ */
 function updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $mobilNummer, $kjonn) {
     global $conn;
 
@@ -79,6 +110,10 @@ function updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $m
 }
 
 
+/** Sletter fra brukertabellen ved brukerId
+ * @param $brukerId         // Id til bruker du ønsker slettet
+ * @return bool             // Returnerer true hvis brukeren ble slettet
+ */
 function deleteUser($brukerId) {
     global $conn;
 
