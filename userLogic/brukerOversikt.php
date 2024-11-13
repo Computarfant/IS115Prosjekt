@@ -13,7 +13,7 @@
 <body>
 
 <?php
-include "../service/profilService.inc.php";
+include "../service/brukerService.inc.php";
 $users = getAllUsers(); // Calls the getAllUsers function
 ?>
 

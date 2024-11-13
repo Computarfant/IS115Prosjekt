@@ -16,4 +16,18 @@ class romType {
         $this->maxGjester = $maxGjester;
         $this->ledigeRom = $ledigeRom;
     }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getNavn() {
+        return $this->navn;
+    }
+
+    public function getPris() {
+        return $this->pris;
+    }
+
+
 }

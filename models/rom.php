@@ -16,6 +16,19 @@ class rom {
         $this->romType = $romType;  
     }
   
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getRomType() {
+        return $this->romType;
+    }
+
+
+
+
+
 }
 
 ?>

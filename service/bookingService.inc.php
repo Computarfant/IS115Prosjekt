@@ -165,3 +165,41 @@ function getRoomTypeById($romTypeId) {
     return null; 
 }
 
+function getBookingForUserAndRoom($userId, $roomId, $startDate, $endDate) {
+    global $conn;
+
+    $sql = "
+        SELECT * FROM Booking 
+        WHERE bid = ? 
+        AND rid = ? 
+        AND startPeriode <= ? 
+        AND sluttPeriode >= ?
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iiss", $userId, $roomId, $startDate, $endDate);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        return $row; // Returning the booking record as an associative array
+    }
+    
+    return null; // Return null if no booking is found
+}
+
+
+function getBookingById($bookingId) {
+    global $conn;
+
+    $sql = "SELECT * FROM Booking WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $bookingId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        return $row; // Return the booking as an associative array
+    }
+    
+    return null; // Return null if no booking is found
+}

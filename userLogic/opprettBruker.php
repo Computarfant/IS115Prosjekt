@@ -75,7 +75,7 @@
 
 
 <?php
-include "../service/profilService.inc.php";
+include "../service/brukerService.inc.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Henter form data

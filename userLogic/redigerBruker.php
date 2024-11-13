@@ -11,7 +11,7 @@
 
 
 <?php
-include "../service/profilService.inc.php";
+include "../service/brukerService.inc.php";
 
 // Henter  brukerID fra URL
 $brukerId = $_GET['id'];
