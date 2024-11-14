@@ -36,7 +36,6 @@ public function testProcessBooking()
     $startDate = '2023-02-01';
     $endDate = '2023-02-05';
     
-    // Assuming room 3 is available during this period
     $result = processBooking($brukerId, $roomId, $numAdults, $numChildren, $startDate, $endDate);
     $this->assertTrue($result);
 
@@ -82,7 +81,6 @@ public function testGetRoomTypeById()
     $romType = getRoomTypeById(9999);
     $this->assertNull($romType);
 }
-
 
 }
 
