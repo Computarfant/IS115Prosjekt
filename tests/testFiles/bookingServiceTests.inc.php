@@ -6,7 +6,9 @@ use PHPUnit\Framework\TestCase;
 require_once "../../service/bookingService.inc.php";
 require_once "../../models/rom.php";
 require_once "../../models/romType.php";
-
+require_once "../setup/configTestdb.inc.php";
+require_once "../setup/dbTestProjectSQL.inc.php";
+require_once "../setup/setupTestDb.php";
 
 class bookingTest extends TestCase
 {
