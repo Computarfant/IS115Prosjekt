@@ -10,3 +10,11 @@ $config["db"]["user"] = "root";
 $config["db"]["pass"] = "";
 
 $config["db"]["database"] = "database name";
+
+
+
+To run the tests, use the following command:
+
+./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/testFiles/bookingServiceTest.inc.php
+
+Simply replace bookingServiceTest.inc.php with the test file you want to execute.

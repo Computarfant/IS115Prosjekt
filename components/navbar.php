@@ -22,6 +22,7 @@ if (isset($_SESSION['rolleId'])) {
         <a href="roomAdminLogic/romOversikt.php">Rom administrering</a>
         <a href="authentication/dbsetup.php">Sett opp DB</a>
         <a href="authentication/logout.php">logout</a>
+        <a href="bookingLogic/booking.php">Booking</a>
     <?php else: ?>
         <!-- Optionally, handle unknown roles here -->
         <p>Unauthorized role</p>

@@ -1,12 +1,12 @@
 <?php
 // Configuration file for the test database
-
 $config["db"]["host"] = "localhost:3306";
 $config["db"]["user"] = "root";
 $config["db"]["pass"] = "";
 $config["db"]["database"] = "TESTDatabase";
 
-$conn = mysqli_connect(
+// Establish a connection using the object-oriented style
+$conn = new mysqli(
     $config["db"]["host"],
     $config["db"]["user"],
     $config["db"]["pass"],
@@ -14,11 +14,13 @@ $conn = mysqli_connect(
 );
 
 // Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Database connected successfully ";
 }
 
-// Return the connection object for use in the setup script
 return $conn;
+
 ?>
 

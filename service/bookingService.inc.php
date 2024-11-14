@@ -1,7 +1,7 @@
 <?php
-require '../inc/init.inc.php';
-require '../models/romType.php';
-require '../models/rom.php';
+require_once __DIR__ . '/../models/romType.php';
+require_once __DIR__ . '/../models/rom.php';
+require_once __DIR__ . '/../inc/init.inc.php';
 
 /** Searches the database for all rooms avilable rooms for the period of time.
  *
