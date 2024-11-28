@@ -3,6 +3,10 @@ include '../inc/config.inc.php';
 include '../inc/init.inc.php';
 session_start();
 
+if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
+    echo '<p style="color: #3def3d;">Bruker logget ut</p>';
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $epost = $_POST['epost'];
     $passord = $_POST['passord'];
@@ -24,16 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['epost'] = $bruker['epost'];
                 $_SESSION['rolleId'] = $bruker['rolleId'];
 
-                // Redirect based on user role
-                $redirectPage = match ($bruker['rolleId']) {
-                    2 => '../userLogic/brukerOversikt.php',
-                    1 => '../index.php',
-                    default => null
-                };
-
-                if ($redirectPage) {
-                    header("Location: $redirectPage");
-                    exit;
+                header("Location: ../index.php");
+                exit;
                 } else {
                     echo "Ukjent brukerrolle.";
                 }
@@ -46,11 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         // Close statement
         $stmt->close();
-    }
 }
 ?>
-
-<!DOCTYPE html>
 <html lang="no">
 <head>
     <meta charset="UTF-8">
@@ -59,28 +52,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<div class="tilbakeKnapp">
-    <a href="../index.php">
-        <button type="button">Tilbake til start</button>
-        <br></br>
-    </a>
-    <br>
-</div>
-
-
 <div style='max-width: 500px; margin: auto; text-align: center;'>
-    <div>
-        <form method="post" action="login.php">
-            <h1>Logg inn</h1>
-            <label for="epost">epost:<input type="email" name="epost" required><br></label>
-            <br></br>
-            <label for="passord">Passord:<input type="password" name="passord" required><br></label>
-            <br></br>
-            <button type="submit">Logg inn</button>
-        </form>
-        <p><a href="register.php"><button>Ingen Konto? Registrer deg her</button></a></p>
-        <br></br>
-    </div>
+    <form method="post" action="login.php">
+        <h1>Logg inn</h1>
+        <label for="epost">Email:</label><br>
+        <input required type="email" id="epost" name="epost" value="<?= htmlspecialchars($_POST['epost'] ?? '') ?>">
+        <span class="error"><?php echo $errors['epost'] ?? ''; ?></span><br>
+
+        <label for="passord">Passord:</label><br>
+        <input required type="password" id="passord" name="passord" value="<?= htmlspecialchars($_POST['passord'] ?? '')?>">
+        <span class="error"><?php echo $errors['passord'] ?? ''; ?></span><br>
+        <button type="submit">Logg inn</button>
+    </form>
+    <a href="register.php"><button>Ingen Konto? Registrer deg her</button></a>
+    <br>
+    <a href="dbSetup.php"><button>Sett opp databasen</button></a>
 </div>
 </body>
 </html>

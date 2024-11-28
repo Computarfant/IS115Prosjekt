@@ -16,6 +16,7 @@ function dbSetupSQL(): array {
             passord VARCHAR(500) NOT NULL,  
             opprettet DATETIME DEFAULT CURRENT_TIMESTAMP,
             rolleId INT DEFAULT 1,
+            locked_until DATETIME DEFAULT NULL,
             FOREIGN KEY (rolleId) REFERENCES BrukerRolle(id)
         );
     ";
@@ -54,24 +55,32 @@ function dbSetupSQL(): array {
     ";
 
     $queries['createBooking'] = "
-    CREATE OR REPLACE TABLE Booking (
-        id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        bid INT NOT NULL,
-        rid INT NOT NULL,
-        antallVoksne INT NOT NULL,
-        antallBarn INT DEFAULT 0,
-        startPeriode DATE NOT NULL,
-        sluttPeriode DATE NOT NULL,
-        totalPris DECIMAL(10, 2) NOT NULL,
-        status ENUM('confirmed', 'canceled', 'pending') DEFAULT 'pending',  -- Added status column
-        FOREIGN KEY (bid) REFERENCES Bruker(id),
-        FOREIGN KEY (rid) REFERENCES Rom(id)
-    );
-";
+        CREATE OR REPLACE TABLE Booking (
+            id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            bid INT NOT NULL,
+            rid INT NOT NULL,
+            antallVoksne INT NOT NULL,
+            antallBarn INT DEFAULT 0,
+            startPeriode DATE NOT NULL,
+            sluttPeriode DATE NOT NULL,
+            totalPris DECIMAL(10, 2) NOT NULL,
+            status ENUM('confirmed', 'canceled', 'pending') DEFAULT 'pending',  -- Added status column
+            FOREIGN KEY (bid) REFERENCES Bruker(id),
+            FOREIGN KEY (rid) REFERENCES Rom(id)
+        );
+    ";
 
-
+    $queries['creatingLoginAttempts'] = "
+        CREATE OR REPLACE TABLE LoginAttempts (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            brukerId INT,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (brukerId) REFERENCES Bruker(id)
+        );
+    ";
 
     /*$queries['createRolleRegister'] = "
+    Fremtidig tabell for å kunne gi brukere flere roller samtidig
         CREATE OR REPLACE TABLE Rolle_register (
             rolleId INT NOT NULL,
             brukerId INT NOT NULL,
@@ -82,6 +91,7 @@ function dbSetupSQL(): array {
     ";*/
 
     /*$queries['createLoyaltyProgram'] = "
+    Fremtidig tabell for å kunne lagre loyalitet data
         CREATE OR REPLACE TABLE LoyaltyProgram (
             loyaltyId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             nivåNavn VARCHAR(50) NOT NULL,
@@ -91,6 +101,7 @@ function dbSetupSQL(): array {
     ";*/
 
     /*$queries['createBetaling'] = "
+    Fremtidig tabell for bettalinglagring
         CREATE OR REPLACE TABLE betaling (
             betId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             bookingId INT NOT NULL,
@@ -138,13 +149,12 @@ function dbSetupSQL(): array {
         ('505', 5, 'suite rik gutt', 3)
     ";
 
-    /*$password = password_hash($pass, PASSWORD_DEFAULT);
-    $queries['insertBruker'] = "
-        INSERT INTO Bruker (epost, passord, opprettet, ckey, ctime) VALUES ('$email', '$password', '', '', '');
-    ";*/
-
     $queries['insertRoller'] = "
         INSERT INTO BrukerRolle (navn) VALUES ('gjest'), ('admin');
+    ";
+    $password = password_hash('Admin123', PASSWORD_DEFAULT);
+    $queries['insertBruker'] = "
+        INSERT INTO Bruker (epost, passord, opprettet, rolleId, locked_until) VALUES ('admin@gmail.com', '$password', '', '2', '');
     ";
 
     return $queries;
