@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div>
                 <button type = "submit" class ="btn-btn-success" name="submit">Lag Rom</button>
-                <br></br>
+                <br>
             </div>
             <div class = "avbryt">
                 <a href=romOversikt.php class ="btn-btn-danger">Avbryt</a>
