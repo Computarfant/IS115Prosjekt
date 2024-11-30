@@ -20,6 +20,7 @@ if (isset($_SESSION['rolleId'])) {
         <!-- Admin Navbar -->
         <a href="userLogic/brukerOversikt.php">Bruker oversikt</a>
         <a href="roomAdminLogic/romOversikt.php">Rom administrering</a>
+        <a href="bookingLogic/">Booking</a>
         <a href="authentication/dbsetup.php">Sett opp DB</a>
         <a href="authentication/logout.php">logout</a>
     <?php else: ?>

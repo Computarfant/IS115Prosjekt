@@ -1,6 +1,10 @@
 <?php
     require_once '../service/bookingService.inc.php';
     require_once '../components/romTypeCard.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$brukerId = $_SESSION['brukerId'];
 
     $ledigeRomTyper = [];
     $innsjekking = "";

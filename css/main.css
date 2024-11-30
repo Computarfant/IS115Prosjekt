@@ -193,9 +193,6 @@ button a:hover {
     width: 500px;
 }
 
-/* tilbakeKnapp fungerer ikke
-
-*/
 .tilbakeKnapp {
   color: rgb(253, 252, 252);
 }
@@ -215,5 +212,3 @@ button a:hover {
 .edit-form1 {
   justify-content: center;
 }
-
-

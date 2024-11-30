@@ -2,6 +2,7 @@
 require '../inc/init.inc.php';
 require '../models/romType.php';
 require '../models/rom.php';
+require '../models/booking.php';
 
 /** Searches the database for all rooms avilable rooms for the period of time.
  *
@@ -175,5 +176,68 @@ function getRoomById($roomId) {
     }
 
     return null;
+}
+
+function getBookingByUser($brukerId): array
+{
+    $db = database(); // Assume this initializes a `mysqli` connection
+
+    $sql = $db->prepare("
+        SELECT 
+            b.id AS bookingId,
+            b.bid,
+            b.rid,
+            b.antallVoksne,
+            b.antallBarn,
+            b.startPeriode,
+            b.sluttPeriode,
+            b.totalPris,
+            b.status,
+            r.id AS romId,
+            r.navn AS romNavn,
+            r.beskrivelse AS romBeskrivelse,
+            r.etasje,
+            r.rtid
+        FROM 
+            Booking b
+        LEFT JOIN 
+            Rom r ON b.rid = r.id
+        WHERE 
+            b.bid = ?
+        ORDER BY 
+            b.startPeriode DESC;
+    ");
+
+    $sql->bind_param("i", $brukerId); // Bind brukerId
+    $sql->execute();
+
+    $rows = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
+
+    // Map each row to a booking instance with nested room information
+    $yourBooking = [];
+    foreach ($rows as $row) {
+        $booking = new booking(
+            $row['bookingId'],
+            $row['bid'],
+            $row['rid'],
+            $row['antallVoksne'],
+            $row['antallBarn'],
+            $row['startPeriode'],
+            $row['sluttPeriode'],
+            $row['totalPris'],
+            $row['status']
+        );
+
+        $booking->room = new rom(
+            $row['romId'],
+            $row['romNavn'],
+            $row['romBeskrivelse'],
+            $row['etasje'],
+            $row['rtid'],
+            0
+        );
+        $yourBooking[] = $booking;
+    }
+    return $yourBooking;
 }
 

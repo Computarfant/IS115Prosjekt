@@ -1,10 +1,10 @@
 <?php
 class romType {
-    public $id;
-    public $navn;
-    public $beskrivelse;
-    public $pris;
-    public $maxGjester;
+    public int $id;
+    public string $navn;
+    public string $beskrivelse;
+    public int $pris;
+    public int $maxGjester;
     public $ledigeRom;
 
     public function __construct($id, $navn, $beskrivelse, $pris, $maxGjester, $ledigeRom)
