@@ -13,8 +13,9 @@ $config["db"]["database"] = "database name";
 
 
 
-To run the tests, use the following command:
+To run the tests, use the following commands:
 
 ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/testFiles/bookingServiceTest.inc.php
+./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/testFiles/roomAdminTest.inc.php
+./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/testFiles/userServiceTest.inc.php
 
-Simply replace bookingServiceTest.inc.php with the test file you want to execute.

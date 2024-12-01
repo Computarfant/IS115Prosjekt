@@ -3,7 +3,7 @@ require_once __DIR__ . '/../models/romType.php';
 require_once __DIR__ . '/../models/rom.php';
 require_once __DIR__ . '/../inc/init.inc.php';
 
-/** Searches the database for all rooms avilable rooms for the period of time.
+/** Searches the database for all rooms available for the period of time.
  *
  * @param $innsjekking      //Value for start date
  * @param $utsjekking       //Value for end date
@@ -82,7 +82,7 @@ function isRoomAvailable($roomId, $startDate, $endDate) {
     return $result->num_rows === 0;
 }
 
-/** Prosesserer booking og returner boolean
+/** Processes booking and returns boolean
  *
  * @param $brukerId
  * @param $roomId
@@ -118,7 +118,7 @@ function processBooking($brukerId, $roomId, $numAdults, $numChildren, $startDate
 }
 
 
-/** Kanselerer booking
+/** Cancels booking
  *
  * @param $bookingId
  * @return bool
@@ -131,7 +131,7 @@ function cancelBooking($bookingId) {
     return $stmt->rowCount() > 0;
 }
 
-/**Henter rom og type ved hjelp av romId
+/** Fetches room and type using roomId
  *
  * @param $roomId
  * @return rom|null
@@ -177,6 +177,14 @@ function getRoomById($roomId) {
     return null;
 }
 
+/** Retrieves booking for a specific user and room in the given period
+ *
+ * @param $userId
+ * @param $roomId
+ * @param $startDate
+ * @param $endDate
+ * @return array|null       // Returns the booking record or null if not found
+ */
 function getBookingForUserAndRoom($userId, $roomId, $startDate, $endDate) {
     global $conn;
 
@@ -200,6 +208,11 @@ function getBookingForUserAndRoom($userId, $roomId, $startDate, $endDate) {
 }
 
 
+/** Fetches booking by its ID
+ *
+ * @param $bookingId
+ * @return array|null       // Returns the booking record or null if not found
+ */
 function getBookingById($bookingId) {
     global $conn;
 

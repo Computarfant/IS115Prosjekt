@@ -1,11 +1,18 @@
 <?php
-// Configuration file for the test database
+
 $config["db"]["host"] = "localhost:3306";
 $config["db"]["user"] = "root";
 $config["db"]["pass"] = "";
 $config["db"]["database"] = "TESTDatabase";
 
-// Establish a connection using the object-oriented style
+global $conn; 
+
+var_dump($config["db"]["host"]);
+var_dump($config["db"]["user"]);
+var_dump($config["db"]["pass"]);
+var_dump($config["db"]["database"]);
+
+
 $conn = new mysqli(
     $config["db"]["host"],
     $config["db"]["user"],
@@ -13,14 +20,11 @@ $conn = new mysqli(
     $config["db"]["database"]
 );
 
-// Check connection
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } else {
     echo "Database connected successfully ";
 }
-
-return $conn;
-
 ?>
 
