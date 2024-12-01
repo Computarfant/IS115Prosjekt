@@ -1,6 +1,7 @@
 ﻿<?php
 include '../inc/config.inc.php';
 include '../inc/init.inc.php';
+require '../service/loggingService.inc.php';
 session_start();
 
 if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
@@ -27,8 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['brukerId'] = $bruker['id'];
                 $_SESSION['epost'] = $bruker['epost'];
                 $_SESSION['rolleId'] = $bruker['rolleId'];
-
+                writeLog($_SESSION['epost'] . ' logged in');
                 header("Location: ../index.php");
+
                 exit;
                 } else {
                     echo "Ukjent brukerrolle.";

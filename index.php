@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 <body>
 
 <div class="container">
-    <h1>Motel booking tjeneste</h1>
+    <h1>Motel Booking Tjeneste</h1>
 </div>
 
 <?php

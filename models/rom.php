@@ -5,7 +5,7 @@ class rom {
     public string $beskrivelse;
     public int $etasje;
     public int $rtid;
-    public ?int $romType;
+    public ?romType $romType;
 
     public function __construct($id, $navn, $beskrivelse, $etasje, $rtid, $romType) {
         $this->id = $id;

@@ -3,6 +3,7 @@ require '../inc/init.inc.php';
 require '../models/romType.php';
 require '../models/rom.php';
 require '../models/booking.php';
+require 'loggingService.inc.php';
 
 /** Searches the database for all rooms avilable rooms for the period of time.
  *
