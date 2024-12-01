@@ -16,3 +16,8 @@
 [2024-12-01 22:19:32] vikfju@gmail.com logged out
 [2024-12-01 22:19:40] admin@gmail.com logged in
 [2024-12-01 22:24:30] admin@gmail.com logged out
+[2024-12-01 23:25:34] User lennartbirk@gmail.com Created
+[2024-12-01 23:25:39] lennartbirk@gmail.com logged in
+[2024-12-01 23:25:56] User: 1 booked the room: 1 from 2024-12-06 to 2024-12-20
+[2024-12-01 23:37:30] User: 2 booked the room: 2 from 2024-12-06 to 2024-12-07
+[2024-12-01 23:41:22] User: 2 booked the room: 20 from 2024-12-06 to 2024-12-25

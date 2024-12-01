@@ -236,7 +236,7 @@ function getBookingByUser($brukerId): array
             $row['romBeskrivelse'],
             $row['etasje'],
             $row['rtid'],
-            0
+            null,
         );
         $yourBooking[] = $booking;
     }
