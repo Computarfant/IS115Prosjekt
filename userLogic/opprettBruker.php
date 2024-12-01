@@ -15,7 +15,7 @@ require_once '../components/adminCheck.php'
 <div class="tilbakeKnapp">
     <a href="brukerOversikt.php">
         <button type="button">Tilbake til bruker oversikt</button>
-        <br></br>
+        <br>
     </a>
     <br>
 </div>
@@ -77,7 +77,7 @@ require_once '../components/adminCheck.php'
 
 
 <?php
-include "../service/brukerService.inc.php";
+include "../service/userService.inc.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Henter form data

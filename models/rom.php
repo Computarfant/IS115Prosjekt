@@ -1,11 +1,11 @@
 <?php
 class rom {
-    public $id;
-    public $navn;
-    public $beskrivelse;
-    public $etasje;         
-    public $rtid;
-    public $romType;         
+    public int $id;
+    public string $navn;
+    public string $beskrivelse;
+    public int $etasje;
+    public int $rtid;
+    public ?romType $romType;
 
     public function __construct($id, $navn, $beskrivelse, $etasje, $rtid, $romType) {
         $this->id = $id;
@@ -31,5 +31,4 @@ class rom {
 
 }
 
-?>
 

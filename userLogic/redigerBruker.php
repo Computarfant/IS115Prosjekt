@@ -17,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 <?php
-include "../service/brukerService.inc.php";
+include "../service/userService.inc.php";
 
 // Henter  brukerID fra URL
 $brukerId = $_GET['id'];
@@ -96,9 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </body>
 </html>
-
-
-
 
 
 </body>

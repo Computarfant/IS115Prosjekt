@@ -18,9 +18,10 @@ if (isset($_SESSION['rolleId'])) {
         <a href="authentication/logout.php">logout</a>
     <?php elseif ($rolleId == 2): ?>
         <!-- Admin Navbar -->
+        <a href="userLogic/logOversikt.php">Log</a>
         <a href="userLogic/brukerOversikt.php">Bruker oversikt</a>
         <a href="roomAdminLogic/romOversikt.php">Rom administrering</a>
-        <a href="authentication/dbsetup.php">Sett opp DB</a>
+        <a href="bookingLogic/booking.php">Booking</a>
         <a href="authentication/logout.php">logout</a>
         <a href="bookingLogic/booking.php">Booking</a>
     <?php else: ?>

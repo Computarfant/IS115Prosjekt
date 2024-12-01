@@ -15,7 +15,7 @@ require_once '../components/adminCheck.php'
 <body>
 
 <?php
-include "../service/brukerService.inc.php";
+include "../service/userService.inc.php";
 $users = getAllUsers(); // Calls the getAllUsers function
 ?>
 

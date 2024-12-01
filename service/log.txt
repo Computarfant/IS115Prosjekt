@@ -1,0 +1,15 @@
+[2024-12-01 04:16:18] lennartbirk@gmail.com logged out
+[2024-12-01 04:16:26] admin@gmail.com logged in
+[2024-12-01 21:56:19] User vikfju@gmail.com Created
+[2024-12-01 21:57:57] vikfju@gmail.com logged in
+[2024-12-01 21:58:15] User: 1 booked the room: 1 from 2024-12-03 to 2024-12-06
+[2024-12-01 22:00:21] User: 1 booked the room: 3 from 2024-12-18 to 2024-12-20
+[2024-12-01 22:10:40] vikfju@gmail.com logged out
+[2024-12-01 22:11:17] admin@gmail.com logged in
+[2024-12-01 22:16:03] admin@gmail.com logged out
+[2024-12-01 22:16:19] vikfju@gmail.com logged in
+[2024-12-01 22:16:23] vikfju@gmail.com logged out
+[2024-12-01 22:16:39] admin@gmail.com logged in
+[2024-12-01 22:17:13] User: 1 booked the room: 5 from 2024-12-04 to 2024-12-14
+[2024-12-01 22:17:38] admin@gmail.com logged out
+[2024-12-01 22:17:46] vikfju@gmail.com logged in

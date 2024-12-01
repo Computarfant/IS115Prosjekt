@@ -15,7 +15,7 @@ require_once '../components/adminCheck.php'
 <body>
 
 <?php
-include "../service/romAdmin.inc.php";
+include "../service/roomAdmin.inc.php";
 // Kaller getAllRooms funksjonen
 $rom = getAllRooms(); 
 ?>

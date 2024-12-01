@@ -156,6 +156,9 @@ function dbSetupSQL(): array {
     $queries['insertBruker'] = "
         INSERT INTO Bruker (epost, passord, opprettet, rolleId, locked_until) VALUES ('admin@gmail.com', '$password', '', '2', '');
     ";
+    $queries['insertProfil'] = "
+        INSERT INTO Profil (brukerId, navn, etternavn, adresse, mobilNummer, kjonn) VALUES ('1', 'Admin', 'Administrator', '', '', '');
+    ";
 
     return $queries;
 }
