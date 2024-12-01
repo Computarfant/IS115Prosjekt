@@ -77,7 +77,7 @@ require_once '../components/adminCheck.php'
 
 
 <?php
-include "../service/profilService.inc.php";
+include "../service/userService.inc.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Henter form data

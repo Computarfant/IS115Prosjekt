@@ -14,7 +14,7 @@ require_once '../components/adminCheck.php'
 <body>
     
 <?php
-include "../service/romAdmin.inc.php";
+include "../service/roomAdmin.inc.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Henter form data

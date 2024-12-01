@@ -38,8 +38,8 @@
 session_start();
 // Include database connection file
 require_once '../inc/config.inc.php'; // Adjust the path as needed
-require_once '../service/profilService.inc.php'; // File where createUser function is defined
 require '../service/loggingService.inc.php';
+require_once '../service/userService.inc.php'; // File where createUser function is defined
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrer'])) {
     // Get form inputs

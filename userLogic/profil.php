@@ -26,7 +26,7 @@ $brukerId = $_SESSION['brukerId'];
 </div>
 
 <?php
-include '../service/profilService.inc.php';
+include '../service/userService.inc.php';
 include '../service/bookingService.inc.php';
 $bookings = getBookingByUser($brukerId); // Calls the getAllbookings function
 $user = getUserById($_SESSION['brukerId']);

@@ -10,3 +10,12 @@ $config["db"]["user"] = "root";
 $config["db"]["pass"] = "";
 
 $config["db"]["database"] = "database name";
+
+
+
+To run the tests, use the following commands:
+
+./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/testFiles/bookingServiceTest.inc.php
+./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/testFiles/roomAdminTest.inc.php
+./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/testFiles/userServiceTest.inc.php
+

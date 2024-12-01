@@ -17,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 <?php
-include "../service/profilService.inc.php";
+include "../service/userService.inc.php";
 
 // Henter  brukerID fra URL
 $brukerId = $_GET['id'];

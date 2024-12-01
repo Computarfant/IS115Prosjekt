@@ -1,30 +1,29 @@
 <?php
-require '../inc/init.inc.php';
-require '../models/romType.php';
-require '../models/rom.php';
-
-/** Retrives all rooms and returns a matrix of room objects
+require_once __DIR__ . '/../models/romType.php';
+require_once __DIR__ .  '/../models/rom.php';
+require_once __DIR__ . '/../inc/init.inc.php';
+/** Retrieves all rooms and returns an array of room objects
  *
  * @return array
  */
 function getAllRooms() {
     global $conn;
 
-    // SQL spørring for å hente rom informasjon
+    // SQL query to fetch room information
     $sql = "SELECT id, navn, beskrivelse, etasje, rtId 
             FROM Rom"; 
 
     $result = mysqli_query($conn, $sql);
     
-    $rooms = []; // Array/matrise for å holde rom objekter
+    $rooms = []; // Array to hold room objects
 
-    // Henter resultatene og lager rom objekter
+    // Fetch the results and create room objects
     while ($row = mysqli_fetch_assoc($result)) {
-        // Lager et rom objekt for dataen som har blitt innhentet
-        $rooms[] = new rom($row['id'],$row['navn'],$row['beskrivelse'], $row['etasje'], $row['rtId'], null); // Setting romType to null for now
+        // Create a room object for the data retrieved
+        $rooms[] = new rom($row['id'], $row['navn'], $row['beskrivelse'], $row['etasje'], $row['rtId'], null); // Setting romType to null for now
     }
 
-    return $rooms; // Return the array of rom objects
+    return $rooms; // Return the array of room objects
 }
 
 
@@ -42,18 +41,18 @@ function getRoomById($roomId) {
     $result = mysqli_stmt_get_result($stmt);
     
     if ($row = mysqli_fetch_assoc($result)) {
-        // Henter romType-data
+        // Fetch roomType data
         $romType = getRoomTypeById($row['rtid']); 
-        // Returner rom-objekt med romType-data
-        return new rom($row['id'], $row['navn'],$row['beskrivelse'], $row['etasje'], $row['rtid'], $romType);
+        // Return room object with roomType data
+        return new rom($row['id'], $row['navn'], $row['beskrivelse'], $row['etasje'], $row['rtid'], $romType);
     }
-    // Returner null hvis romType ikke finnes
+    // Return null if roomType does not exist
     return null; 
 }
 
 /** Fetches roomType by romType.id
  *
- * @param $rtid         //romTypeId
+ * @param $rtid         // romTypeId
  * @return romType|null
  */
 function getRoomTypeById($rtid): ?romType
@@ -66,17 +65,17 @@ function getRoomTypeById($rtid): ?romType
     $result = mysqli_stmt_get_result($stmt); 
     
     if ($row = mysqli_fetch_assoc($result)) {
-        // Returnerer en instans av romType-klassen
-        //Debugging
-        //echo "<p>Debug: Room Type ID = $romTypeId</p>";
-        //echo "<p>Debug: Room Type Name = " . htmlspecialchars($row['navn']) . "</p>";
+        // Returns an instance of the romType class
+        // Debugging
+        // echo "<p>Debug: Room Type ID = $romTypeId</p>";
+        // echo "<p>Debug: Room Type Name = " . htmlspecialchars($row['navn']) . "</p>";
         return new romType($row['id'], $row['navn'], $row['beskrivelse'], $row['pris'], $row['maxGjester'], null);
     }
-    // Returner null hvis romType ikke finnes
+    // Return null if roomType does not exist
     return null; 
 }
 
-/**Fetches all rooms
+/** Fetches all room types
  *
  * @return array
  */
@@ -91,7 +90,7 @@ function getAllRomTypes() {
     return $romTypes;
 }
 
-/** Updates specific room and its details
+/** Updates a specific room and its details
  *
  * @param $roomId
  * @param $navn
@@ -109,7 +108,7 @@ function updateRoom($roomId, $navn, $beskrivelse, $etasje, $rtid) {
 }
 
 
-/** Creates new room and returns rom object
+/** Creates a new room and returns a room object
  *
  * @param $navn
  * @param $beskrivelse
@@ -120,7 +119,7 @@ function updateRoom($roomId, $navn, $beskrivelse, $etasje, $rtid) {
 function createRoom($navn, $beskrivelse, $etasje, $rtid, ) {
     global $conn;
     
-    // Injecter nytt rom i rom tabellen i databasen
+    // Insert new room into the room table in the database
     $sqlInsertRoom = "INSERT INTO rom (navn, beskrivelse, etasje, rtid) VALUES (?, ?, ?, ?)";
     
     $stmtInsertRoom = mysqli_prepare($conn, $sqlInsertRoom);
@@ -128,10 +127,10 @@ function createRoom($navn, $beskrivelse, $etasje, $rtid, ) {
     
     
     if (mysqli_stmt_execute($stmtInsertRoom)) {
-        // Henter ID'en til det nyskapte rommet
+        // Fetch the ID of the newly created room
         $newRoomId = mysqli_insert_id($conn);
         
-        // Returnerer det nye rom objektet 
+        // Return the new room object
         return new rom($newRoomId, $navn, $beskrivelse, $etasje, $rtid, null);
     } else {
         
@@ -140,24 +139,24 @@ function createRoom($navn, $beskrivelse, $etasje, $rtid, ) {
 }
 
 
-/** Delete room by ID and return boolean
+/** Deletes a room by ID and returns a boolean
  * @param $roomId
  * @return bool
  */
 function deleteRoom($roomId) {
     global $conn;
-    // Spørring for å slette et rom med bruk av ID'en
+    // Query to delete a room using its ID
     $sqlDeleteRoom = "DELETE FROM rom WHERE id = ?";
     
     $stmtDeleteRoom = mysqli_prepare($conn, $sqlDeleteRoom);
     mysqli_stmt_bind_param($stmtDeleteRoom, "i", $roomId);
 
     if (mysqli_stmt_execute($stmtDeleteRoom)) {
-        return true; // Returnerer true hvis slettingen var suksessfull
+        return true; // Returns true if the deletion was successful
     } else {
-        return false; // Returnerer false hvis slettingen feilet
+        return false; // Returns false if the deletion failed
     }
 }
 
-//Forbedringer:
-//Tester til funksjonene.
+// Improvements:
+// Tests for the functions.

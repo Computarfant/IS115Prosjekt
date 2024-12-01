@@ -5,7 +5,7 @@ require '../models/rom.php';
 require '../models/booking.php';
 require 'loggingService.inc.php';
 
-/** Searches the database for all rooms avilable rooms for the period of time.
+/** Searches the database for all rooms available for the period of time.
  *
  * @param $innsjekking      //Value for start date
  * @param $utsjekking       //Value for end date
@@ -84,7 +84,7 @@ function isRoomAvailable($roomId, $startDate, $endDate) {
     return $result->num_rows === 0;
 }
 
-/** Prosesserer booking og returner boolean
+/** Processes booking and returns boolean
  *
  * @param $brukerId
  * @param $roomId
@@ -120,7 +120,7 @@ function processBooking($brukerId, $roomId, $numAdults, $numChildren, $startDate
 }
 
 
-/** Kanselerer booking
+/** Cancels booking
  *
  * @param $bookingId
  * @return bool
@@ -133,7 +133,7 @@ function cancelBooking($bookingId) {
     return $stmt->rowCount() > 0;
 }
 
-/**Henter rom og type ved hjelp av romId
+/** Fetches room and type using roomId
  *
  * @param $roomId
  * @return rom|null
@@ -214,6 +214,7 @@ function getBookingByUser($brukerId): array
 
     $rows = $sql->get_result()->fetch_all(MYSQLI_ASSOC);
 
+
     // Map each row to a booking instance with nested room information
     $yourBooking = [];
     foreach ($rows as $row) {
@@ -240,5 +241,58 @@ function getBookingByUser($brukerId): array
         $yourBooking[] = $booking;
     }
     return $yourBooking;
+}
+
+
+/** Retrieves booking for a specific user and room in the given period
+ *
+ * @param $userId
+ * @param $roomId
+ * @param $startDate
+ * @param $endDate
+ * @return array|null       // Returns the booking record or null if not found
+ */
+function getBookingForUserAndRoom($userId, $roomId, $startDate, $endDate) {
+    global $conn;
+
+    $sql = "
+        SELECT * FROM Booking 
+        WHERE bid = ? 
+        AND rid = ? 
+        AND startPeriode <= ? 
+        AND sluttPeriode >= ?
+    ";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iiss", $userId, $roomId, $startDate, $endDate);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        return $row; // Returning the booking record as an associative array
+    }
+    
+    return null; // Return null if no booking is found
+}
+
+
+/** Fetches booking by its ID
+ *
+ * @param $bookingId
+ * @return array|null       // Returns the booking record or null if not found
+ */
+function getBookingById($bookingId) {
+    global $conn;
+
+    $sql = "SELECT * FROM Booking WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $bookingId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        return $row; // Return the booking as an associative array
+    }
+    
+    return null; // Return null if no booking is found
 }
 

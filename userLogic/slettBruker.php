@@ -1,5 +1,5 @@
 <?php
-include "../service/profilService.inc.php";
+include "../service/brukerService.inc.php";
 
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
@@ -13,11 +13,11 @@ if (!isset($_SESSION['rolleId']) || $_SESSION['rolleId'] != 2) {
     exit();
 }
 
-// Sjekker om en bruker ID er gitt
+// Check if a user ID is provided
 if (isset($_GET['id'])) {
     $brukerId = $_GET['id'];
 
-    // Kaller deleteUser funksjonen fra dbFunctions
+    // Call deleteUser function from service/brukerService.inc.php
     $isDeleted = deleteUser($brukerId);
 
     if ($isDeleted) {
@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
         echo "Error deleting user.";
     }
 } else {
-    // Feilmelding hvis det ikke er blitt gitt brukerID
+    // Error message if no user ID is provided
     header("Location: brukerOversikt.php?error=No+user+ID+provided");
 }
 exit();
