@@ -7,57 +7,30 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-<div class="tilbakeKnapp">
-    <a href="../index.php">
-        <button type="button">Tilbake til start</button>
-        <br></br>
-    </a>
-    <br>
-</div>
-
 
 <div style='max-width: 500px; margin: auto; text-align: center;'>
     <h1>Registrer</h1>
-    <?php
-    if(!empty($err)){
-        foreach ($err as $e) {
-            echo "<div>$e</div>";
-        }
-    }
-    if(!empty($msg)){
-        foreach ($msg as $m) {
-            echo "<div>$m</div>";
-        }
-    }
-    if(isset($fatalErr)){
-        die();
-    }
-    ?>
+
     <form action='register.php' method='POST'>
         <label for="navn">First Name:</label><br>
-        <input required type="text" id="navn" name="navn" value="<?= htmlspecialchars($_POST['navn'] ?? '') ?>"><br>
-        <br></br>
-        <label for="etternavn">Last Name:</label><br>
-        <input required type="text" id="etternavn" name="etternavn" value="<?= htmlspecialchars($_POST['etternavn'] ?? '') ?>"><br>
-        <br></br>
-        <label for="epost">epost:</label><br>
-        <input required type="email" id="epost" name="epost" value="<?= htmlspecialchars($_POST['epost'] ?? '') ?>"><br>
-        <br></br>
-        <label for="password">Password:</label><br>
-        <input required type="password" id="password" name="passord" value="<?= htmlspecialchars($_POST['passord'] ?? '') ?>"><br>
+        <input required type="text" id="navn" name="navn" value="<?= htmlspecialchars($_POST['navn'] ?? '') ?>">
+        <span class="error"><?php echo $errors['navn'] ?? ''; ?></span><br>
 
-        <!--<label for="adresse"></label><br>
-        <input type="hidden" id="adresse" name="adresse" value="<?= htmlspecialchars($_POST['adresse'] ?? '') ?>"><br>
-        <label for="mobilnummer"></label><br>
-        <input type="hidden" id="mobilnummer" name="mobilnummer" value="<?= htmlspecialchars($_POST['mobilnummer'] ?? '') ?>"><br>
-        <label for="kjonn"></label><br>
-        <input type="hidden" id="kjonn" name="kjonn" value="<?= htmlspecialchars($_POST['kjonn'] ?? '') ?>"><br> -->
-        <br></br>
+        <label for="etternavn">Last Name:</label><br>
+        <input required type="text" id="etternavn" name="etternavn" value="<?= htmlspecialchars($_POST['etternavn'] ?? '') ?>">
+        <span class="error"><?php echo $errors['etternavn'] ?? ''; ?></span><br>
+
+        <label for="epost">Email:</label><br>
+        <input required type="email" id="epost" name="epost" value="<?= htmlspecialchars($_POST['epost'] ?? '') ?>">
+        <span class="error"><?php echo $errors['epost'] ?? ''; ?></span><br>
+
+        <label for="password">Password:</label><br>
+        <input required type="password" id="password" name="passord" minlength="10" value="<?= htmlspecialchars($_POST['passord'] ?? '') ?>">
+        <span class="error"><?php echo $errors['passord'] ?? ''; ?></span><br>
+
         <button type="submit" name="registrer">Opprett Konto</button>
     </form>
-
-    <br>
-    <p><a href="login.php"><button>Allerede Registrert</button></a></p>
+    <a href="login.php"><button>Allerede Registrert</button></a>
 </body>
 </html>
 

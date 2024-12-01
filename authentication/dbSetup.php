@@ -39,7 +39,7 @@ if(isset($_POST['brukerDatabase'])){
 </head>
 <body>
 <div style='max-width: 500px; margin: auto; text-align: center;'>
-    <h1>Setup</h1>
+    <h1>Database Setup</h1>
     <?php
     if(!empty($err)){
         foreach ($err as $e) {
@@ -56,6 +56,7 @@ if(isset($_POST['brukerDatabase'])){
     }
     ?>
     <form action='dbSetup.php' method='POST'>
+        <p>Opprett en database og rediger config settings før en trykker på knappen</p>
         <p><button name="brukerDatabase">Sett opp databasen</button></p>
     </form>
 
