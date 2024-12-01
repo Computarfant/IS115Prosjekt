@@ -1,5 +1,5 @@
 <?php
-include "../service/brukerService.inc.php";
+include "../service/userService.inc.php";
 
 // Start session if not already started
 if (session_status() === PHP_SESSION_NONE) {
