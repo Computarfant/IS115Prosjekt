@@ -13,3 +13,5 @@
 [2024-12-01 22:17:13] User: 1 booked the room: 5 from 2024-12-04 to 2024-12-14
 [2024-12-01 22:17:38] admin@gmail.com logged out
 [2024-12-01 22:17:46] vikfju@gmail.com logged in
+[2024-12-01 22:19:32] vikfju@gmail.com logged out
+[2024-12-01 22:19:40] admin@gmail.com logged in
