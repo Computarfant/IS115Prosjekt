@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if ($success) {
+        writeLog('User: ' . $brukerId . ' booked the room: ' . $roomId . ' from ' . $innsjekking . ' to ' . $utsjekking);
         header("Location: bookingSuccess.php?roomId=$roomId&innsjekking=$innsjekking&utsjekking=$utsjekking&totalPris=$totalPrice&antallVoksne=$antallVoksne&antallBarn=$antallBarn");
         exit;
     } else {

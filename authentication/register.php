@@ -35,9 +35,11 @@
 </html>
 
 <?php
+session_start();
 // Include database connection file
 require_once '../inc/config.inc.php'; // Adjust the path as needed
 require_once '../service/profilService.inc.php'; // File where createUser function is defined
+require '../service/loggingService.inc.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrer'])) {
     // Get form inputs
@@ -52,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrer'])) {
     // Call the createUser function
     if (createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer, $kjonn)) {
         echo "<p>Registration successful! You can now <a href='login.php'>log in</a>.</p>";
+        writeLog('User ' . $epost . ' Created');
     } else {
         echo "<p>Registration failed. Please try again.</p>";
     }

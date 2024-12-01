@@ -15,7 +15,7 @@ require_once '../components/adminCheck.php'
 <div class="tilbakeKnapp">
     <a href="brukerOversikt.php">
         <button type="button">Tilbake til bruker oversikt</button>
-        <br></br>
+        <br>
     </a>
     <br>
 </div>
