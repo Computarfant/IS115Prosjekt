@@ -91,32 +91,41 @@ $user = getUserById($_SESSION['brukerId']);
             <th>Slutt</th>
             <th>Kostnad</th>
             <th>Status</th>
+            <th>Action</th> <!-- Add a column for actions -->
         </tr>
         </thead>
         <tbody>
         <?php if (!empty($bookings)): ?>
             <?php foreach ($bookings as $booking): ?>
                 <tr>
-                        <td><?php echo $booking->id; ?></td>
-                        <td><?php echo $booking->room->navn; ?></td>
-                        <td><?php echo $booking->room->beskrivelse; ?></td>
-                        <td><?php echo $booking->room->etasje; ?></td>
-                        <td><?php echo $booking->antallVoksne; ?></td>
-                        <td><?php echo $booking->antallBarn; ?></td>
-                        <td><?php echo $booking->startPeriode; ?></td>
-                        <td><?php echo $booking->sluttPeriode; ?></td>
-                        <td><?php echo $booking->totalPris; ?></td>
-                        <td><?php echo $booking->status; ?></td>
+                    <td><?php echo $booking->id; ?></td>
+                    <td><?php echo $booking->room->navn; ?></td>
+                    <td><?php echo $booking->room->beskrivelse; ?></td>
+                    <td><?php echo $booking->room->etasje; ?></td>
+                    <td><?php echo $booking->antallVoksne; ?></td>
+                    <td><?php echo $booking->antallBarn; ?></td>
+                    <td><?php echo $booking->startPeriode; ?></td>
+                    <td><?php echo $booking->sluttPeriode; ?></td>
+                    <td><?php echo $booking->totalPris; ?></td>
+                    <td><?php echo $booking->status; ?></td>
+                    <td>
+                        <!-- Cancel booking button/link -->
+                        <?php if ($booking->status == 'confirmed'): ?>
+                            <a href="cancelBooking.php?id=<?php echo $booking->id; ?>" class="btn btn-danger btn-sm"
+                               onclick="return confirm('Er du sikker på at du vil kansellere denne bookingen?');">Cancel</a>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="7" class="text-center">Ingen Bookinger Funnet</td>
+                <td colspan="10" class="text-center">Ingen Bookinger Funnet</td>
             </tr>
         <?php endif; ?>
         </tbody>
     </table>
 </div>
+
 
 </body>
 </html>

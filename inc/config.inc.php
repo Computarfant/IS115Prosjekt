@@ -1,18 +1,23 @@
 ﻿<?php
-//lånt kode
-//Database configs
-$config["db"]["host"] = "localhost:3306";
-$config["db"]["user"] = "root";
-$config["db"]["pass"] = "";
-$config["db"]["database"] = "IS115Database";
+// Database configuration
+require_once __DIR__ . '/../vendor/autoload.php';  // Ensure you've installed vlucas/phpdotenv
 
-//Server configs
-$config["general"]["projectRoot"] = "";
-$config["general"]["pepper"] = "IAmBadAtSecurity";
+use Dotenv\Dotenv;
 
-$conn = mysqli_connect($config["db"]["host"], $config["db"]["user"], $config["db"]["pass"], $config["db"]["database"]);
+// Load environment variables from .env file
+$dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
-// Check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+// Read environment variables
+$dbHost = $_ENV['DB_HOST'] ?? 'localhost:3306';  // Default to localhost if not set
+$dbUser = $_ENV['DB_USER'] ?? 'root';            // Default to root if not set
+$dbPass = $_ENV['DB_PASS'] ?? '';                // Default to empty password if not set
+$dbName = $_ENV['DB_NAME'] ?? 'IS115Database';   // Default to IS115Database if not set
+
+// Initialize the database connection based on environment variables
+$conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+
+// Check for connection errors
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }

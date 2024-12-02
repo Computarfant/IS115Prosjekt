@@ -1,30 +1,46 @@
 <?php
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Set environment variables from $_ENV or default values
+$environment = $_ENV['ENVIRONMENT'] ?? 'production';
 
-require_once 'configTestdb.inc.php';  
-
-
-if (!isset($config) || empty($config)) {
-    die("<h1>Configuration error</h1><p>Please ensure that configTest.inc.php is set up correctly for the test environment.</p>");
+if ($environment === 'test') {
+    // Test Database Configuration using environment variables
+    $dbHost = $_ENV['TEST_DB_HOST'] ?? 'localhost:3306';
+    $dbUser = $_ENV['TEST_DB_USER'] ?? 'root';
+    $dbPass = $_ENV['TEST_DB_PASS'] ?? '';
+    $dbName = $_ENV['TEST_DB_NAME'] ?? 'TESTDatabase';
+} else {
+    // Main Database Configuration using environment variables
+    $dbHost = $_ENV['DB_HOST'] ?? 'localhost:3306';
+    $dbUser = $_ENV['DB_USER'] ?? 'root';
+    $dbPass = $_ENV['DB_PASS'] ?? '';
+    $dbName = $_ENV['DB_NAME'] ?? 'IS115Database';
 }
 
-function database(): mysqli {
-    global $conn; 
+global $conn;
 
-    if (!$conn) {
-        die("Connection is not established.");
-    }
+// Debugging to confirm which environment is active
+echo "Current Environment: " . $environment . PHP_EOL;
+echo "Database: " . $dbName . PHP_EOL;
 
-    return $conn;
+// Establish connection
+$conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Database connected successfully ";
 }
 
+// Seed the database if needed (optional, for testing purposes)
 function seedDatabase(mysqli $conn) {
+    // Make sure to include the required SQL setup file
     require_once 'dbTestProjectSQL.inc.php'; 
+
+    // Retrieve the SQL queries for seeding the database
     $queries = dbSetupSQL();
 
+    // Iterate over each query and execute it
     foreach ($queries as $key => $query) {
         if ($conn->query($query) === TRUE) {
             echo "Query '$key' executed successfully.\n";
@@ -34,6 +50,17 @@ function seedDatabase(mysqli $conn) {
     }
 }
 
-$conn = database();
-seedDatabase($conn);
-return $conn;
+function databaseTest(): mysqli {
+    global $conn; 
+
+    if (!$conn) {
+        die("Connection is not established.");
+    }
+
+    return $conn;
+}
+
+// Optionally, you can call the seed function like so:
+// seedDatabase($conn);
+?>
+

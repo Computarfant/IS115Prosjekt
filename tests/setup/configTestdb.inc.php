@@ -1,25 +1,30 @@
 <?php
 
-$config["db"]["host"] = "localhost:3306";
-$config["db"]["user"] = "root";
-$config["db"]["pass"] = "";
-$config["db"]["database"] = "TESTDatabase";
+// Set environment variables from $_ENV or default values
+$environment = $_ENV['ENVIRONMENT'] ?? 'production';
 
-global $conn; 
+if ($environment === 'test') {
+    // Test Database Configuration using environment variables
+    $dbHost = $_ENV['TEST_DB_HOST'] ?? 'localhost:3306';
+    $dbUser = $_ENV['TEST_DB_USER'] ?? 'root';
+    $dbPass = $_ENV['TEST_DB_PASS'] ?? '';
+    $dbName = $_ENV['TEST_DB_NAME'] ?? 'TESTDatabase';
+} else {
+    // Main Database Configuration using environment variables
+    $dbHost = $_ENV['DB_HOST'] ?? 'localhost:3306';
+    $dbUser = $_ENV['DB_USER'] ?? 'root';
+    $dbPass = $_ENV['DB_PASS'] ?? '';
+    $dbName = $_ENV['DB_NAME'] ?? 'IS115Database';
+}
 
-var_dump($config["db"]["host"]);
-var_dump($config["db"]["user"]);
-var_dump($config["db"]["pass"]);
-var_dump($config["db"]["database"]);
+global $conn;
 
+// Debugging to confirm which environment is active
+echo "Current Environment: " . $environment . PHP_EOL;
+echo "Database: " . $dbName . PHP_EOL;
 
-$conn = new mysqli(
-    $config["db"]["host"],
-    $config["db"]["user"],
-    $config["db"]["pass"],
-    $config["db"]["database"]
-);
-
+// Establish connection
+$conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -27,4 +32,6 @@ if ($conn->connect_error) {
     echo "Database connected successfully ";
 }
 ?>
+
+
 

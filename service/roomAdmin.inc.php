@@ -1,7 +1,10 @@
 <?php
 require_once __DIR__ . '/../models/romType.php';
 require_once __DIR__ .  '/../models/rom.php';
-require_once __DIR__ . '/../inc/init.inc.php';
+require_once __DIR__ . '/../inc/config.inc.php';
+//^Her var det inc/inc før en test endring
+
+
 /** Retrieves all rooms and returns an array of room objects
  *
  * @return array
@@ -75,20 +78,25 @@ function getRoomTypeById($rtid): ?romType
     return null; 
 }
 
-/** Fetches all room types
+/**
+ * Fetches all room types from the database and returns them as an array of romType objects.
  *
- * @return array
+ * @return array An array of `romType` objects, each representing a room type.
+ *               If there are no room types, it returns an empty array.
  */
-function getAllRomTypes() {
+function getAllRoomTypes() {
     global $conn;
     $sql = "SELECT * FROM RomType";
     $result = mysqli_query($conn, $sql);
     $romTypes = [];
-    while ($row = mysqli_fetch_object($result)) {
-        $romTypes[] = $row; 
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Create and add an instance of romType for each row
+        $romTypes[] = new romType($row['id'], $row['navn'], $row['beskrivelse'], $row['pris'], $row['maxGjester'], null);
     }
     return $romTypes;
 }
+
+
 
 /** Updates a specific room and its details
  *

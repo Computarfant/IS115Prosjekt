@@ -5,7 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $brukerId = $_SESSION['brukerId'];
-echo $brukerId;
     $ledigeRomTyper = [];
     $innsjekking = "";
     $utsjekking = "";

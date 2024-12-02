@@ -1,36 +1,36 @@
 ﻿<?php
-//lånt kode
+// Enable error reporting for debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Include the database configuration (this will load environment variables and set up $conn)
+require_once __DIR__ . '/config.inc.php';
 
-require_once 'config.inc.php';
-
-//Error om config.inc.php ikke er opprettet.
-if(!isset($config) || empty($config)){
-    die("<h1>Configuration error</h1><p>Copy the webdata/config.inc.sample.php file to webdata/config.inc.php and fill out your connection settings.</p>");
+// Check if database connection is established correctly
+if (!$conn) {
+    die("<h1>Configuration error</h1><p>Could not connect to the database. Please check your connection settings.</p>");
 }
 
-$projectRoot = $config["general"]["projectRoot"];
+$projectRoot = $_ENV['PROJECT_ROOT'] ?? '/'; 
 
-//Henter en configurasjon variabel
-function getConfig($val, $group = "general"){
-    global $config;
-
-    if(isset($config[$group][ $val ])){
-        return $config[$group][$val];
-    }
-    return false;
+// Function to retrieve configuration values from environment variables
+function getEnvVar($key, $default = null) {
+    return $_ENV[$key] ?? $default;
 }
 
-//Konfigurer en ny databasetilkobling og returnerer et mysqli objekt
-function database():mysqli{
-    global $config;
+// Function to configure a new database connection and return a mysqli object (using environment variables)
+function database(): mysqli {
+    // Use environment variables directly
+    $dbHost = $_ENV['DB_HOST'] ?? 'localhost:3306';
+    $dbUser = $_ENV['DB_USER'] ?? 'root';
+    $dbPass = $_ENV['DB_PASS'] ?? '';
+    $dbName = $_ENV['DB_NAME'] ?? 'IS115Database';
 
-    $db = new mysqli($config["db"]["host"], $config["db"]["user"], $config["db"]["pass"], $config["db"]["database"]);
+    // Create a new connection using the environment variables
+    $db = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
-    if($db->connect_error){
+    if ($db->connect_error) {
         die("Connection failed: " . $db->connect_error);
     }
 

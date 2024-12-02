@@ -1,23 +1,38 @@
 ﻿<?php
-//lånt kode
+// Initialize error and message arrays
 $err = array();
 $msg = array();
 
-
+// Include the database configuration and init file
 require_once "../inc/dbProject.inc.php";
-require_once '../inc/config.inc.php';
+require_once '../inc/config.inc.php'; // This file is still needed for environment setup
 
-global $config;
-$pRoot = $config["general"]["projectRoot"] ?? '';
+global $conn;
 
-if(isset($_POST['brukerDatabase'])){
+// Get database details from environment variables
+$dbHost = $_ENV['DB_HOST'] ?? 'localhost:3306';
+$dbUser = $_ENV['DB_USER'] ?? 'root';
+$dbPass = $_ENV['DB_PASS'] ?? '';
+$dbName = $_ENV['DB_NAME'] ?? 'IS115Database'; // Or use $_ENV['TEST_DB_NAME'] if you're setting up a test environment
+
+if (isset($_POST['brukerDatabase'])) {
+    // Initialize the database connection
     require '../inc/init.inc.php';
-    $db = database();
+    
+    // Use the environment variables directly
+    $db = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
-    $db->query("DROP DATABASE IF EXISTS {$config["db"]["database"]};");
-    $db->query("CREATE DATABASE {$config["db"]["database"]};");
-    $db->query("USE {$config["db"]["database"]};");
+    // Ensure connection is successful
+    if ($db->connect_error) {
+        die("Connection failed: " . $db->connect_error);
+    }
 
+    // Execute SQL to drop and recreate the database
+    $db->query("DROP DATABASE IF EXISTS {$dbName};");
+    $db->query("CREATE DATABASE {$dbName};");
+    $db->query("USE {$dbName};");
+
+    // Loop through queries to set up tables
     foreach (dbSetupSQL() as $table => $query) {
         $db->query($query);
         if ($temp = $db->error) {
@@ -41,17 +56,17 @@ if(isset($_POST['brukerDatabase'])){
 <div style='max-width: 500px; margin: auto; text-align: center;'>
     <h1>Database Setup</h1>
     <?php
-    if(!empty($err)){
+    if (!empty($err)) {
         foreach ($err as $e) {
             echo "<div>$e</div>";
         }
     }
-    if(!empty($msg)){
+    if (!empty($msg)) {
         foreach ($msg as $m) {
             echo "<div>$m</div>";
         }
     }
-    if(isset($fatalErr)){
+    if (isset($fatalErr)) {
         die();
     }
     ?>
@@ -64,3 +79,4 @@ if(isset($_POST['brukerDatabase'])){
     <p><a href="../index.php"><button>Tilbake til Prosjektet</button></a></p>
 </body>
 </html>
+

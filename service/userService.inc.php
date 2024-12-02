@@ -140,7 +140,3 @@ function deleteUser($brukerId) {
         return false;
     }
 }
-
-
-// Improvements:
-// Tests for the functions.
