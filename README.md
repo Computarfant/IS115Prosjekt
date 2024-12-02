@@ -29,7 +29,7 @@ DB_PASS=
 DB_NAME= 'database name'
 =======
 
-
+Run DbSetup.php and create setup database or import is115Database to phpMyAdmin
 
 ## Testing With PHPunit
 
