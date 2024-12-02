@@ -3,11 +3,12 @@
 
 use PHPUnit\Framework\TestCase;
 require_once __DIR__ . '/../setup/configTestdb.inc.php';
-require_once __DIR__ . '/../../service/bookingService.inc.php';
 require_once __DIR__ . '/../../models/rom.php';
 require_once __DIR__ . '/../../models/romType.php';
 require_once __DIR__ . '/../setup/dbTestProjectSQL.inc.php';
 require_once __DIR__ . '/../setup/initTest.inc.php';
+require_once __DIR__ . '/../../service/bookingService.inc.php';
+
 
 class bookingServiceTest extends TestCase
 {   
@@ -16,8 +17,9 @@ class bookingServiceTest extends TestCase
     public function setUp(): void
 {
  
-    $this->conn = database();
+    $this->conn = databaseTest();
 
+    $this->conn->query("SET FOREIGN_KEY_CHECKS = 0");
  
     $this->conn->query("TRUNCATE TABLE Booking");
     $this->conn->query("TRUNCATE TABLE Profil");
@@ -36,13 +38,13 @@ class bookingServiceTest extends TestCase
     {
         global $conn;
         $roomId = 1;
-        $startDate = '2023-01-01';
-        $endDate = '2023-01-07';
+        $startDate = '2025-01-01';
+        $endDate = '2025-01-07';
         
         $this->assertFalse(isRoomAvailable($roomId, $startDate, $endDate));
 
-        $startDate = '2023-01-10';
-        $endDate = '2023-01-15';
+        $startDate = '2025-01-10';
+        $endDate = '2025-01-15';
         $this->assertTrue(isRoomAvailable($roomId, $startDate, $endDate));
     }
 
@@ -56,8 +58,8 @@ class bookingServiceTest extends TestCase
         $roomId = 3;
         $numAdults = 2;
         $numChildren = 1;
-        $startDate = '2023-02-01';
-        $endDate = '2023-02-05';
+        $startDate = '2025-02-01';
+        $endDate = '2025-02-05';
         
         $result = processBooking($brukerId, $roomId, $numAdults, $numChildren, $startDate, $endDate);
         $this->assertTrue($result);

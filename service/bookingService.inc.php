@@ -1,8 +1,8 @@
 <?php
-require '../inc/init.inc.php';
-require '../models/romType.php';
-require '../models/rom.php';
-require '../models/booking.php';
+require_once __DIR__ . '/../inc/init.inc.php';
+require_once __DIR__ . '/../models/romType.php';
+require_once __DIR__ . '/../models/rom.php';
+require_once __DIR__ . '/../models/booking.php';
 require 'loggingService.inc.php';
 
 /** Searches the database for all rooms available for the period of time.
@@ -126,12 +126,17 @@ function processBooking($brukerId, $roomId, $numAdults, $numChildren, $startDate
  * @return bool
  */
 function cancelBooking($bookingId) {
-    global $pdo;
-    $stmt = $pdo->prepare("UPDATE Booking SET status = 'canceled' WHERE id = :bookingId");
-    $stmt->execute([':bookingId' => $bookingId]);
+    global $conn;
 
-    return $stmt->rowCount() > 0;
+    $stmt = $conn->prepare("UPDATE Booking SET status = 'canceled' WHERE id = ?");
+    $stmt->bind_param("i", $bookingId);  // Bind the bookingId parameter to the prepared statement
+    $stmt->execute();
+
+    // For mysqli, you can use `affected_rows` to check how many rows were affected by the query
+    return $stmt->affected_rows > 0;  // Return true if at least one row was updated
 }
+
+
 
 /** Fetches room and type using roomId
  *

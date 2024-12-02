@@ -1,0 +1,5 @@
+<phpunit bootstrap="vendor/autoload.php">
+    <php>
+        <env name="ENVIRONMENT" value="test"/>
+    </php>
+</phpunit>

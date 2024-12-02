@@ -1,21 +1,21 @@
 <?php
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . '/../setup/configTestdb.inc.php';
-require_once __DIR__ . '/../../service/userService.inc.php'; 
+require_once __DIR__ . '/../setup/configTestdb.inc.php'; 
 require_once __DIR__ . '/../setup/dbTestProjectSQL.inc.php'; 
 require_once __DIR__ . '/../setup/initTest.inc.php';
+require_once __DIR__ . '/../../service/userService.inc.php';
 
-
-class brukerServiceTest extends TestCase
+class userServiceTest extends TestCase
 {
     protected $conn;
 
     public function setUp(): void
 {
  
-    $this->conn = database();
+    $this->conn = databaseTest();
 
+    $this->conn->query("SET FOREIGN_KEY_CHECKS = 0");
   
     $this->conn->query("TRUNCATE TABLE Booking");
     $this->conn->query("TRUNCATE TABLE Profil");
@@ -41,7 +41,8 @@ class brukerServiceTest extends TestCase
         $result = createUser($epost, $passord, $navn, $etternavn, $adresse, $mobilnummer, $kjonn);
         $this->assertTrue($result, "createUser should return true when the user is successfully created.");
 
-        $user = getUserById(1); // 
+        $user = getUserById(mysqli_insert_id($this -> conn));
+        echo "Actual email: " . $user['epost'] . "\n";  // Debugging line
         $this->assertNotNull($user, "User should exist in the database.");
         $this->assertEquals($epost, $user['epost'], "User's email should match.");
         $this->assertEquals($navn, $user['navn'], "User's name should match.");

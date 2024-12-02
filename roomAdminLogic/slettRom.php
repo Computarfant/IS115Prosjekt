@@ -1,5 +1,5 @@
 <?php
-require '../service/romAdmin.inc.php';
+require '../service/roomAdmin.inc.php';
 require_once '../components/adminCheck.php';
 
 if (isset($_GET['id'])) {

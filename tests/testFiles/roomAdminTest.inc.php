@@ -2,11 +2,13 @@
 use PHPUnit\Framework\TestCase;
 
 require_once __DIR__ . '/../setup/configTestdb.inc.php';
-require_once __DIR__ . '/../../service/roomAdmin.inc.php';
 require_once __DIR__ . '/../../models/rom.php';
 require_once __DIR__ . '/../../models/romType.php';
 require_once __DIR__ . '/../setup/dbTestProjectSQL.inc.php';
 require_once __DIR__ . '/../setup/initTest.inc.php';
+require_once __DIR__ . '/../../service/roomAdmin.inc.php';
+
+
 class roomAdminTest extends TestCase
 {
     protected $conn;
@@ -14,8 +16,10 @@ class roomAdminTest extends TestCase
     public function setUp(): void
 {
    
-    $this->conn = database();
+    $this->conn = databaseTest();
      
+    $this->conn->query("SET FOREIGN_KEY_CHECKS = 0");
+
      $this->conn->query("TRUNCATE TABLE Booking");
      $this->conn->query("TRUNCATE TABLE Profil");
      $this->conn->query("TRUNCATE TABLE Bruker");
@@ -57,7 +61,7 @@ class roomAdminTest extends TestCase
 
     public function testGetAllRomTypes()
     {
-        $roomTypes = getAllRomTypes();
+        $roomTypes = getAllRoomTypes();
         $this->assertIsArray($roomTypes, "getAllRomTypes should return an array.");
         $this->assertNotEmpty($roomTypes, "getAllRomTypes should not return an empty array.");
         $this->assertInstanceOf(romType::class, $roomTypes[0], "Each element in the array should be an instance of the romType class.");
