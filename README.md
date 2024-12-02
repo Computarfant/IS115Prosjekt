@@ -1,6 +1,5 @@
 # Motell Booking System PHP
 
-=======
 Repository For Group Project in IS115
 
 Gruppe 16 | Lennart Birkeland & Viktor Fjuk
