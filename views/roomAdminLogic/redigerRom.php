@@ -1,6 +1,4 @@
-<?php
-require_once '../components/adminCheck.php'
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +7,14 @@ require_once '../components/adminCheck.php'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Room</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
 
 <?php
-include "../service/roomAdmin.inc.php"; 
+session_start();
+require_once '../../components/adminCheck.php';
+include "../../service/roomAdmin.inc.php";
 
 // Henter romID fra URL
 $roomId = $_GET['id'];
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Romtype ID</label>
+            <label for="romTypeId" class="form-label">Romtype ID</label>
             <input type="number" class="form-control" id="romTypeId" name="romTypeId" value="<?php echo $romType->id; ?>" required>
         </div>
 

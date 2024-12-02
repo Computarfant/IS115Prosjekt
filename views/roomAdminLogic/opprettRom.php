@@ -1,6 +1,3 @@
-<?php
-require_once '../components/adminCheck.php'
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +5,16 @@ require_once '../components/adminCheck.php'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <title>Create Room</title>
 </head>
 
 <body>
     
 <?php
-include "../service/roomAdmin.inc.php";
+session_start();
+require_once '../../components/adminCheck.php';
+include "../../service/roomAdmin.inc.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Henter form data
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="tilbakeKnapp">
     <a href="romOversikt.php">
         <button type="button">Tilbake til rom administrering</button>
-        <br></br>
+        <br>
     </a>
     <br>
 </div>

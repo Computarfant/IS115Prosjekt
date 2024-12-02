@@ -123,9 +123,10 @@ class userServiceTest extends TestCase
         $adresse = "Updated Street 456";
         $mobilnummer = "97654321";
         $kjonn = "M";
+        $rolleId ="1";
 
         // Update user details
-        updateUser(1, $epost, $passord, $navn, $etternavn, $adresse, $mobilnummer, $kjonn);
+        updateUser(1, $epost, $passord, $rolleId, $navn, $etternavn, $adresse, $mobilnummer, $kjonn);
 
         // Fetch the updated user
         $user = getUserById(1);

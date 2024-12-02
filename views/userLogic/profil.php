@@ -4,36 +4,38 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $brukerId = $_SESSION['brukerId'];
+
+include '../../service/userService.inc.php';
+include '../../service/bookingService.inc.php';
+$bookings = getBookingByUser($brukerId); // Calls the getAllbookings function
+$user = getUserById($_SESSION['brukerId']);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/profil.css">
+    <link rel="stylesheet" href="../../css/profil.css">
     <title>Profil</title>
 </head>
 <body>
 <div class="tilbakeKnapp">
-    <a href="../index.php">
+    <a href="../../index.php">
         <button type="button">Tilbake til start</button>
         <br>
     </a>
     <br>
 </div>
-<div class="profilTittel">
+<div class="container">
     <h1>Velkommen til din Profil</h1>
 </div>
 
-<?php
-include '../service/userService.inc.php';
-include '../service/bookingService.inc.php';
-$bookings = getBookingByUser($brukerId); // Calls the getAllbookings function
-$user = getUserById($_SESSION['brukerId']);
-?>
-<!-- User Profile Table -->
+<div class="container">
+    <p>Her kan du se dine Bookinger og Profil innstillinger</p>
+</div>
 <div class="container mt-5">
-    <h3>Bruker Informasjon:</h3>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -44,7 +46,6 @@ $user = getUserById($_SESSION['brukerId']);
             <th>Address</th>
             <th>Mobile Number</th>
             <th>Gender</th>
-            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -59,24 +60,24 @@ $user = getUserById($_SESSION['brukerId']);
                 <td><?php echo $user['kjonn']; ?></td>
                 <td>
                     <a href="redigerBruker.php?id=<?php echo $user['id']; ?>" class="btn btn-primary">Edit</a>
+
                     <a href="slettBruker.php?id=<?php echo $user['id']; ?>" class="btn btn-danger btn-sm"
                        onclick="return confirm('Er du sikker på at du vil slette denne brukeren?');">Delete</a>
+
                 </td>
+
             </tr>
         <?php else: ?>
             <tr>
-                <td colspan="8" class="text-center">No users found</td>
+                <td colspan="7" class="text-center">No users found</td>
             </tr>
         <?php endif; ?>
         </tbody>
     </table>
 </div>
-
 <br>
 
-<!-- Bookings Table -->
 <div class="container mt-5">
-    <h3>Mine Bookinger:</h3>
     <table class="table table-striped">
         <thead>
         <tr>
@@ -90,7 +91,7 @@ $user = getUserById($_SESSION['brukerId']);
             <th>Slutt</th>
             <th>Kostnad</th>
             <th>Status</th>
-            <th>Action</th>
+            <th>Action</th> <!-- Add a column for actions -->
         </tr>
         </thead>
         <tbody>
@@ -108,8 +109,9 @@ $user = getUserById($_SESSION['brukerId']);
                     <td><?php echo $booking->totalPris; ?></td>
                     <td><?php echo $booking->status; ?></td>
                     <td>
+                        <!-- Cancel booking button/link -->
                         <?php if ($booking->status == 'confirmed'): ?>
-                            <a href="cancelBooking.php?id=<?php echo $booking->id; ?>" class="btn btn-danger btn-sm"
+                            <a href="../bookingLogic/cancelBooking.php?id=<?php echo $booking->id; ?>" class="btn btn-danger btn-sm"
                                onclick="return confirm('Er du sikker på at du vil kansellere denne bookingen?');">Cancel</a>
                         <?php endif; ?>
                     </td>
@@ -117,12 +119,13 @@ $user = getUserById($_SESSION['brukerId']);
             <?php endforeach; ?>
         <?php else: ?>
             <tr>
-                <td colspan="11" class="text-center">Ingen Bookinger Funnet</td>
+                <td colspan="10" class="text-center">Ingen Bookinger Funnet</td>
             </tr>
         <?php endif; ?>
         </tbody>
     </table>
 </div>
+
 
 </body>
 </html>

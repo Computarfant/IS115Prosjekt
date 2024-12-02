@@ -1,0 +1,22 @@
+[2024-12-02 20:36:28] admin@gmail.com logged out
+[2024-12-02 20:36:37] admin@gmail.com logged in
+[2024-12-02 20:36:45] admin@gmail.com logged out
+[2024-12-02 20:36:49] lennartbirk@gmail.com logged in
+[2024-12-02 20:39:42] lennartbirk@gmail.com logged out
+[2024-12-02 20:39:53] admin@gmail.com logged in
+[2024-12-02 20:44:15] User: 1 booked the room: 1 from 2024-12-04 to 2024-12-20
+[2024-12-02 20:58:32] admin@gmail.com logged out
+[2024-12-02 21:09:42] asd@gmail.com logged in
+[2024-12-02 21:09:44] asd@gmail.com logged out
+[2024-12-02 21:09:57] admin@gmail.com logged in
+[2024-12-02 21:30:33] admin@gmail.com logged out
+[2024-12-02 21:31:31] admin@gmail.com logged in
+[2024-12-02 21:33:30] admin@gmail.com logged out
+[2024-12-02 21:33:42] admin@gmail.com logged in
+[2024-12-02 21:36:26] admin@gmail.com logged in
+[2024-12-02 21:36:50] admin@gmail.com logged out
+[2024-12-02 21:36:55] admin@gmail.com logged in
+[2024-12-02 21:37:35] admin@gmail.com logged out
+[2024-12-02 21:38:14] lennartbirk@gmail.com logged in
+[2024-12-02 21:38:21] admin@gmail.com logged in
+[2024-12-02 21:39:29] admin@gmail.com logged out

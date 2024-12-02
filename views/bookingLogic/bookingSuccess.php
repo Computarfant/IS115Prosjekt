@@ -1,5 +1,5 @@
 <?php
-require_once '../service/bookingService.inc.php';
+require_once '../../service/bookingService.inc.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -27,13 +27,13 @@ $room = getRoomById($roomId); // Fetch room details from the database
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Success</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/bookingsuccess.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/bookingsuccess.css">
 </head>
 <body>
 
 <div class="tilbakeKnapp">
-    <a href="../index.php">
+    <a href="../../index.php">
         <button type="button">Tilbake til start</button>
         <br>
     </a>
@@ -53,10 +53,10 @@ $room = getRoomById($roomId); // Fetch room details from the database
         </div>
 
         <div class="success-actions">
-            <br></br>
-            <br></br>
+            <br>
+            <br>
             <a href="booking.php"><button>Make Another Booking</button></a>
-            <br></br>
+            <br>
             <a href="../userLogic/profil.php"><button>View My Bookings</button></a>
             
         </div>

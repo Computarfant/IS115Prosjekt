@@ -1,5 +1,5 @@
 <?php
-require_once '../service/bookingService.inc.php';
+require_once '../../service/bookingService.inc.php';
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="no">
 <head>
     <title>Confirm Booking</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
 <div class="tilbakeKnapp">

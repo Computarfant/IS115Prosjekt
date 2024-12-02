@@ -1,5 +1,7 @@
 <?php
-require_once '../components/adminCheck.php'
+require_once '../../components/adminCheck.php';
+include "../../service/userService.inc.php";
+$users = getAllUsers(); // Calls the getAllUsers function
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,26 +10,17 @@ require_once '../components/adminCheck.php'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/bruker.css">
-   
-
+    <link rel="stylesheet" href="../../css/bruker.css">
 </head>
 <body>
 
-<?php
-include "../service/userService.inc.php";
-
-$users = getAllUsers(); // Calls the getAllUsers function
-?>
-
 <div class="tilbakeKnapp">
-    <a href="../index.php">
+    <a href="../../index.php">
         <button type="button">Tilbake til start</button>
-        <br></br>
+        <br>
     </a>
     <br>
 </div>
-
 
 <h4>Bruker liste:</h4>
 
@@ -62,7 +55,6 @@ $users = getAllUsers(); // Calls the getAllUsers function
                                onclick="return confirm('Er du sikker på at du vil slette denne brukeren?');">Delete</a>
 
                         </td>
-                    
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -76,7 +68,7 @@ $users = getAllUsers(); // Calls the getAllUsers function
 
 <div class="navbar">
     <a href="opprettBruker.php">Opprett ny bruker</a>
-    <br></br>
+    <br>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

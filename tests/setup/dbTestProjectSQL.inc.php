@@ -136,7 +136,4 @@ function dbSetupSQL(): array {
     return $queries;
 }
 
-
-
-
 ?>

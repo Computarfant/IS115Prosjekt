@@ -3,23 +3,11 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
-</head>
-<body>
 
+include "../../service/userService.inc.php";
+require_once "../../service/validationServices.inc.php";
 
-<?php
-include "../service/userService.inc.php";
-
-// Henter  brukerID fra URL
+// Henter brukerID fra URL
 $brukerId = $_GET['id'];
 
 // Henter brukerdata med ID'en
@@ -33,15 +21,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $etternavn = $_POST['etternavn'];
     $adresse = $_POST['adresse'];
     $mobilNummer = $_POST['mobilNummer'];
+    $rolleId = $_POST['rolleId'];
     $kjonn = $_POST['kjonn'];
 
     // Kaller updateUser funksjonen for å gjøre endringene
-    updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $mobilNummer, $kjonn);
+    updateUser($brukerId, $epost, $passord, $rolleId, $navn, $etternavn, $adresse, $mobilNummer, $kjonn);
     header("Location: brukerOversikt.php");
     exit();
 }
-?>
 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/main.css">
+</head>
+<body>
 <div class="tilbakeKnapp">
     <button type="button" onclick="goBack()">Tilbake</button>
     <br>
@@ -55,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 <div class="edit-form1">
-    <h4>Rediger bruker:</h4>
+    <h4>Edit User:</h4>
     <br>
     <form action="" method="POST">
         <div class="mb-3">
@@ -84,22 +83,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class="col">
                 <label class="form-label"></label>
+            <label id="kjonn">
                 <select class="form-control" name="kjonn" required>
                     <option value="" disabled selected>Velg kjonn</option>
                     <option value="F">Kvinne</option>
                     <option value="M">Mann</option>
                     <option value="O">Annet</option>
                 </select>
-            </div>
+            </label>
+        </div>
+        <div class="col">
+            <label class="form-label"></label>
+            <label id="rolleId">
+                <select class="form-control" name="rolleId" required>
+                    <option value="" disabled selected>Velg Rolle</option>
+                    <option value="1">Bruker</option>
+                    <option value="2">Admin</option>
+                </select>
+            </label>
+        </div>
+
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
-
 
 </body>
 </html>
