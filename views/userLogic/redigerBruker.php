@@ -21,10 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $etternavn = $_POST['etternavn'];
     $adresse = $_POST['adresse'];
     $mobilNummer = $_POST['mobilNummer'];
+    $rolleId = $_POST['rolleId'];
     $kjonn = $_POST['kjonn'];
 
     // Kaller updateUser funksjonen for å gjøre endringene
-    updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $mobilNummer, $kjonn);
+    updateUser($brukerId, $epost, $passord, $rolleId, $navn, $etternavn, $adresse, $mobilNummer, $kjonn);
     header("Location: brukerOversikt.php");
     exit();
 }
@@ -79,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <div class="col">
                 <label class="form-label"></label>
-            <label id="gender">
+            <label id="kjonn">
                 <select class="form-control" name="kjonn" required>
                     <option value="" disabled selected>Velg kjonn</option>
                     <option value="F">Kvinne</option>
@@ -88,6 +89,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </select>
             </label>
         </div>
+        <div class="col">
+            <label class="form-label"></label>
+            <label id="rolleId">
+                <select class="form-control" name="rolleId" required>
+                    <option value="" disabled selected>Velg Rolle</option>
+                    <option value="1">Bruker</option>
+                    <option value="2">Admin</option>
+                </select>
+            </label>
+        </div>
+
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>

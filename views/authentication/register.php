@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrer'])) {
             header("Location: login.php?register=success");
             exit;
         } else {
-            $errors['general'] = "Registration failed. Please try again.";
+            echo "Registration failed | Email already in use. Please try again. ";
         }
     }
 }
