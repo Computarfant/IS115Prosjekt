@@ -3,6 +3,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+if (isset($_GET['message']) && $_GET['message'] === 'Access Denied!') {
+    echo '<p style="color: red;">Access Denied!</p>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
