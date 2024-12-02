@@ -1,6 +1,6 @@
 <?php
-    require_once '../service/bookingService.inc.php';
-    require_once '../components/romTypeCard.php';
+    require_once '../../service/bookingService.inc.php';
+    require_once '../../components/romTypeCard.php';
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -23,13 +23,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Booking</title>
-        <link rel="stylesheet" href="../css/main.css">
-        <link rel="stylesheet" href="../css/romTypeCard.css">
+        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/romTypeCard.css">
 </head>
 <body>
 
 <div class="tilbakeKnapp">
-    <a href="../index.php">
+    <a href="../../index.php">
         <button type="button">Tilbake til start</button>
         <br>
     </a>

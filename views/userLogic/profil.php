@@ -4,18 +4,25 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 $brukerId = $_SESSION['brukerId'];
+
+include '../../service/userService.inc.php';
+include '../../service/bookingService.inc.php';
+$bookings = getBookingByUser($brukerId); // Calls the getAllbookings function
+$user = getUserById($_SESSION['brukerId']);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../../css/main.css">
     <title>Profil</title>
 </head>
 <body>
 <div class="tilbakeKnapp">
-    <a href="../index.php">
+    <a href="../../index.php">
         <button type="button">Tilbake til start</button>
         <br>
     </a>
@@ -24,13 +31,6 @@ $brukerId = $_SESSION['brukerId'];
 <div class="container">
     <h1>Velkommen til din Profil</h1>
 </div>
-
-<?php
-include '../service/userService.inc.php';
-include '../service/bookingService.inc.php';
-$bookings = getBookingByUser($brukerId); // Calls the getAllbookings function
-$user = getUserById($_SESSION['brukerId']);
-?>
 
 <div class="container">
     <p>Her kan du se dine Bookinger og Profil innstillinger</p>
@@ -111,7 +111,7 @@ $user = getUserById($_SESSION['brukerId']);
                     <td>
                         <!-- Cancel booking button/link -->
                         <?php if ($booking->status == 'confirmed'): ?>
-                            <a href="cancelBooking.php?id=<?php echo $booking->id; ?>" class="btn btn-danger btn-sm"
+                            <a href="../bookingLogic/cancelBooking.php?id=<?php echo $booking->id; ?>" class="btn btn-danger btn-sm"
                                onclick="return confirm('Er du sikker på at du vil kansellere denne bookingen?');">Cancel</a>
                         <?php endif; ?>
                     </td>

@@ -1,0 +1,7 @@
+[2024-12-02 20:36:28] admin@gmail.com logged out
+[2024-12-02 20:36:37] admin@gmail.com logged in
+[2024-12-02 20:36:45] admin@gmail.com logged out
+[2024-12-02 20:36:49] lennartbirk@gmail.com logged in
+[2024-12-02 20:39:42] lennartbirk@gmail.com logged out
+[2024-12-02 20:39:53] admin@gmail.com logged in
+[2024-12-02 20:44:15] User: 1 booked the room: 1 from 2024-12-04 to 2024-12-20

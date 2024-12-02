@@ -4,8 +4,8 @@ $err = array();
 $msg = array();
 
 // Include the database configuration and init file
-require_once "../inc/dbProject.inc.php";
-require_once '../inc/config.inc.php'; // This file is still needed for environment setup
+require_once "../../inc/dbProject.inc.php";
+require_once '../../inc/config.inc.php'; // This file is still needed for environment setup
 
 global $conn;
 
@@ -17,7 +17,7 @@ $dbName = $_ENV['DB_NAME'] ?? 'IS115Database'; // Or use $_ENV['TEST_DB_NAME'] i
 
 if (isset($_POST['brukerDatabase'])) {
     // Initialize the database connection
-    require '../inc/init.inc.php';
+    require '../../inc/init.inc.php';
     
     // Use the environment variables directly
     $db = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
@@ -28,9 +28,9 @@ if (isset($_POST['brukerDatabase'])) {
     }
 
     // Execute SQL to drop and recreate the database
-    $db->query("DROP DATABASE IF EXISTS {$dbName};");
-    $db->query("CREATE DATABASE {$dbName};");
-    $db->query("USE {$dbName};");
+    $db->query("DROP DATABASE IF EXISTS $dbName;");
+    $db->query("CREATE DATABASE $dbName;");
+    $db->query("USE $dbName;");
 
     // Loop through queries to set up tables
     foreach (dbSetupSQL() as $table => $query) {
@@ -49,7 +49,7 @@ if (isset($_POST['brukerDatabase'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../../css/main.css">
     <title>Setup</title>
 </head>
 <body>
@@ -76,7 +76,7 @@ if (isset($_POST['brukerDatabase'])) {
     </form>
 
     <br>
-    <p><a href="../index.php"><button>Tilbake til Prosjektet</button></a></p>
+    <p><a href="../../index.php"><button>Tilbake til Prosjektet</button></a></p>
 </body>
 </html>
 

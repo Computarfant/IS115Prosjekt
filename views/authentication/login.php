@@ -1,11 +1,15 @@
 ﻿<?php
-include '../inc/config.inc.php';
-include '../inc/init.inc.php';
-require '../service/loggingService.inc.php';
 session_start();
+include '../../inc/config.inc.php';
+include '../../inc/init.inc.php';
+require '../../service/loggingService.inc.php';
+
 
 if (isset($_GET['logout']) && $_GET['logout'] === 'success') {
     echo '<p style="color: #3def3d;">Bruker logget ut</p>';
+}
+if (isset($_GET['register']) && $_GET['register'] === 'success') {
+    echo '<p style="color: #3def3d;">Registration Successfully</p>';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -29,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['epost'] = $bruker['epost'];
                 $_SESSION['rolleId'] = $bruker['rolleId'];
                 writeLog($_SESSION['epost'] . ' logged in');
-                header("Location: ../index.php");
+                header("Location: ../../index.php");
 
                 exit;
                 } else {
@@ -50,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Logg inn</title>
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
 

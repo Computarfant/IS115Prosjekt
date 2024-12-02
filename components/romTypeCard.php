@@ -5,7 +5,7 @@ function RomTypeCard($room, $innsjekking, $utsjekking)
     $roomId = $room->id;
     $romType = $room->romType;
 
-    echo "<div class='card' style='background-image: url(../assets/image/{$romType->navn}.jpg);'>";
+    echo "<div class='card' style='background-image: url(../../assets/image/{$romType->navn}.jpg);'>";
     echo "<div class='card-content'>";
     echo "<h1>" . htmlspecialchars($romType->navn) . "</h1>";
     echo "<p>Room number: " . htmlspecialchars($room->navn) . "</p>";  // Unique room ID for each card
