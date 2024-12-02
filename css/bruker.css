@@ -1,16 +1,19 @@
 body {
-    background: #666699;
-    color: white;
-    min-height: 100vh;
-      box-sizing: border-box;
-      padding-top: 10vh;
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
-    font-weight: 300;
-    line-height: 1.5;
-    max-width: 60rem;
-    margin: 0 auto;
-    font-size: 100%;
-  }
+  background-color: rgb(3, 75, 135);
+  color: white;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-top: 10vh;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  max-width: 60rem;
+  margin: 0 auto;
+  font-size: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the entire content horizontally */
+}
   
   body, h2, p, a, th, td {
     color: white !important; /* Ensure white text for the entire page */
@@ -24,8 +27,12 @@ table {
     background-color: rgba(255, 255, 255, 0.1); /* Lighter stripe for visibility */
 }
 
-.error {
-    color: #ff3333; /* A bright red color for better visibility */
-    font-size: 14px;
-    margin-top: -8px;
+h4 {
+  align-self: flex-start; /* Aligns the heading to the start of the container */
+  margin-left: 1rem; /* Adds a left margin for spacing */
+}
+
+.tilbakeKnapp {
+  align-self: flex-start; /* Aligns the button to the start of the container */
+  margin-left: 1rem; /* Adds a left margin for spacing */
 }

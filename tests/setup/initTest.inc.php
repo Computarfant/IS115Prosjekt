@@ -1,41 +1,12 @@
 <?php
 
-// Set environment variables from $_ENV or default values
-$environment = $_ENV['ENVIRONMENT'] ?? 'production';
+// Include the database configuration
+require_once __DIR__ . '/configTestdb.inc.php';
 
-if ($environment === 'test') {
-    // Test Database Configuration using environment variables
-    $dbHost = $_ENV['TEST_DB_HOST'] ?? 'localhost:3306';
-    $dbUser = $_ENV['TEST_DB_USER'] ?? 'root';
-    $dbPass = $_ENV['TEST_DB_PASS'] ?? '';
-    $dbName = $_ENV['TEST_DB_NAME'] ?? 'TESTDatabase';
-} else {
-    // Main Database Configuration using environment variables
-    $dbHost = $_ENV['DB_HOST'] ?? 'localhost:3306';
-    $dbUser = $_ENV['DB_USER'] ?? 'root';
-    $dbPass = $_ENV['DB_PASS'] ?? '';
-    $dbName = $_ENV['DB_NAME'] ?? 'IS115Database';
-}
-
-global $conn;
-
-// Debugging to confirm which environment is active
-echo "Current Environment: " . $environment . PHP_EOL;
-echo "Database: " . $dbName . PHP_EOL;
-
-// Establish connection
-$conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "Database connected successfully ";
-}
-
-// Seed the database if needed (optional, for testing purposes)
+// Seed the database (optional, for testing purposes)
 function seedDatabase(mysqli $conn) {
-    // Make sure to include the required SQL setup file
-    require_once 'dbTestProjectSQL.inc.php'; 
+    // Include the required SQL setup file
+    require_once __DIR__ . '/dbTestProjectSQL.inc.php'; 
 
     // Retrieve the SQL queries for seeding the database
     $queries = dbSetupSQL();
@@ -50,8 +21,13 @@ function seedDatabase(mysqli $conn) {
     }
 }
 
+/**
+ * Returns the database connection for test operations.
+ * 
+ * @return mysqli The test database connection
+ */
 function databaseTest(): mysqli {
-    global $conn; 
+    global $conn;
 
     if (!$conn) {
         die("Connection is not established.");
@@ -59,8 +35,4 @@ function databaseTest(): mysqli {
 
     return $conn;
 }
-
-// Optionally, you can call the seed function like so:
-// seedDatabase($conn);
 ?>
-

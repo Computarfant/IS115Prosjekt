@@ -97,18 +97,27 @@ function isRoomAvailable($roomId, $startDate, $endDate) {
 function processBooking($brukerId, $roomId, $numAdults, $numChildren, $startDate, $endDate) {
     global $conn;
 
-    if (!isRoomAvailable($roomId, $startDate, $endDate)) {
-        return false;
-    }
-
     $room = getRoomById($roomId);
     if (!$room || !$room->romType) {
         return false;
     }
-    // Calculate total price using the nested romType's price
+
+    // Validate if the total number of guests exceeds the max allowed for this room type
+    $totalGuests = $numAdults + $numChildren;
+    if ($totalGuests > $room->romType->maxGjester) {
+        return false; 
+    }
+
+    // Check room availability for the specified dates
+    if (!isRoomAvailable($roomId, $startDate, $endDate)) {
+        return false;
+    }
+
+    // Calculate total price based on the room type's price and duration of stay
     $days = (strtotime($endDate) - strtotime($startDate)) / 86400;
     $totalPrice = $room->romType->pris * $days;
 
+    // Proceed with inserting the booking into the database
     $stmt = $conn->prepare("
         INSERT INTO Booking (bid, rid, antallVoksne, antallBarn, startPeriode, sluttPeriode, totalPris, status)
         VALUES (?, ?, ?, ?, ?, ?, ?, 'confirmed')

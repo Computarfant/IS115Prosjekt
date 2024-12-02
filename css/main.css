@@ -194,7 +194,8 @@ button a:hover {
 }
 
 .tilbakeKnapp {
-  color: rgb(253, 252, 252);
+    color: rgb(253, 252, 252);
+    text-align: left; /* Align text to the left */
 }
 
 .form {
