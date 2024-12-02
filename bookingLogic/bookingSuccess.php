@@ -1,6 +1,9 @@
 <?php
 require_once '../service/bookingService.inc.php';
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$brukerId = $_SESSION['brukerId'];
 $roomId = $_GET['roomId'] ?? null;
 $innsjekking = $_GET['innsjekking'] ?? null;
 $utsjekking = $_GET['utsjekking'] ?? null;

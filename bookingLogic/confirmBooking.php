@@ -1,7 +1,10 @@
-
 <?php
 require_once '../service/bookingService.inc.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$brukerId = $_SESSION['brukerId'];
 $roomId = $_GET['roomId'] ?? null;
 $innsjekking = $_GET['innsjekking'] ?? null;
 $utsjekking = $_GET['utsjekking'] ?? null;
@@ -21,7 +24,6 @@ $totalPrice = $room->romType->pris * $days;
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $brukerId = 1; // Replace with actual user ID from session or login
     $success = processBooking($brukerId, $roomId, $_POST['antallVoksne'], $_POST['antallBarn'], $innsjekking, $utsjekking);
 
     
