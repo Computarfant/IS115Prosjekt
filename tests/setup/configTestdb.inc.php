@@ -1,5 +1,4 @@
 <?php
-
 // Set environment variables from $_ENV or default values
 $environment = $_ENV['ENVIRONMENT'] ?? 'production';
 
@@ -19,17 +18,18 @@ if ($environment === 'test') {
 
 global $conn;
 
-// Debugging to confirm which environment is active
-echo "Current Environment: " . $environment . PHP_EOL;
-echo "Database: " . $dbName . PHP_EOL;
-
-// Establish connection
+// Establish database connection
 $conn = new mysqli($dbHost, $dbUser, $dbPass, $dbName);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+}
+
+// Optionally log which environment is active
+if ($environment === 'test') {
+    echo "Connected to Test Database: " . $dbName . PHP_EOL;
 } else {
-    echo "Database connected successfully ";
+    echo "Connected to Production Database: " . $dbName . PHP_EOL;
 }
 ?>
 

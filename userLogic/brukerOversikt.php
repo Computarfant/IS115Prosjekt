@@ -16,6 +16,7 @@ require_once '../components/adminCheck.php'
 
 <?php
 include "../service/userService.inc.php";
+
 $users = getAllUsers(); // Calls the getAllUsers function
 ?>
 

@@ -22,16 +22,12 @@ if (session_status() === PHP_SESSION_NONE) {
 include 'components/navbar.php';
 ?>
 
-
 <div class="container">
-    <p>Velkommen til vårt motell-booking tjeneste :)</p>
+    <p>Velkommen til vår motell-booking tjeneste :)</p>
 </div>
-
 
 <div class="image-container">
-    <img src="assets/image/MOTEL.jpg" alt="Description of the image" style="max-width: 100%; height: auto;">
+    <img src="assets/image/MOTEL.jpeg" alt="Description of the image" style="max-width: 100%; height: auto;">
 </div>
-
-
 </body>
 </html>

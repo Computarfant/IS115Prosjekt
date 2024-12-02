@@ -43,12 +43,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 
 <div class="tilbakeKnapp">
-    <a href="brukerOversikt.php">
-        <button type="button">Tilbake til bruker oversikt</button>
-        <br>
-    </a>
+    <button type="button" onclick="goBack()">Tilbake</button>
     <br>
 </div>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 
 
 <div class="edit-form1">

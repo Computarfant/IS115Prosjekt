@@ -1,0 +1,152 @@
+body {
+    background-color: rgb(3, 75, 135);
+    color: white;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding-top: 10vh;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    line-height: 1.5;
+    max-width: 60rem;
+    margin: 0 auto;
+    font-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the entire content horizontally */
+}
+
+body, h2, p, a, th, td {
+    color: white !important; /* Ensure white text for the entire page */
+}
+
+.container {
+    width: 100%; /* Full width within the max-width boundary */
+    padding: 20px;
+}
+
+
+.profilTittel {
+
+    justify-content: center;
+}
+
+
+table {
+    color: white; /* Ensures table content text is white */
+    width: 100%;
+    margin-bottom: 30px; /* Add space below each table */
+    border-collapse: collapse;
+    margin: 0 auto; /* Center tables horizontally */
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: rgba(255, 255, 255, 0.1); /* Lighter stripe for visibility */
+}
+
+/* Add spacing between the tables */
+.table + .table {
+    margin-top: 40px; /* Space between the user and booking tables */
+}
+
+th, td {
+    padding: 12px 15px; /* Add padding to table cells for better spacing */
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.2); /* Light background for table headers */
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Ensure that the buttons inside table rows are well-spaced and consistent */
+.btn {
+    margin-right: 5px;
+}
+
+/* Base style for all buttons */
+button, .btn {
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Edit Button */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05); /* Slight scale effect */
+}
+
+/* Delete Button */
+/* Delete Button (Red) */
+.btn-danger {
+    background-color: #d10000; /* Solid dark red */
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #b20000; /* Darker red for hover */
+    transform: scale(1.05); /* Slight scale effect */
+}
+
+
+/* Cancel Button */
+.btn-sm {
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.btn-sm:hover {
+    color: #721c24;
+    transform: scale(1.05); /* Slight scale effect */
+}
+
+/* Button Group Spacing (for buttons in tables) */
+td .btn {
+    margin-right: 10px; /* Space between buttons */
+}
+
+/* Button focus states for accessibility */
+button:focus, .btn:focus {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5); /* Blue shadow for focus */
+}
+
+.tilbakeKnapp {
+    width: 100%; /* Take full width of the page */
+    text-align: left; /* Align content to the left */
+    padding-left: 20px; /* Add some left padding for spacing */
+    margin-bottom: 20px; /* Optional: Add spacing below the button */
+    
+}
+
+.tilbakeKnapp button {
+    margin: 0; /* Remove unnecessary margin */
+    background-color: #333;
+}

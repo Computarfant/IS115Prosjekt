@@ -67,3 +67,21 @@
 [2024-12-02 16:13:42] User: 1 booked the room: 10 from 2024-12-02 to 2024-12-04
 [2024-12-02 16:15:05] User: 1 booked the room: 5 from 2024-12-06 to 2024-12-08
 [2024-12-02 16:17:18] User: 1 booked the room: 5 from 2024-12-24 to 2024-12-26
+[2024-12-02 16:36:21] admin@gmail.com logged out
+[2024-12-02 16:48:24] admin@gmail.com logged in
+[2024-12-02 17:14:14] User: 1 booked the room: 1 from 2024-12-03 to 2024-12-05
+[2024-12-02 17:43:30] admin@gmail.com logged out
+[2024-12-02 17:43:33] admin@gmail.com logged in
+[2024-12-02 20:35:54] admin@gmail.com logged out
+[2024-12-02 20:36:04] admin@gmail.com logged in
+[2024-12-02 20:38:24] admin@gmail.com logged out
+[2024-12-02 20:38:34] vikfju@gmail.com logged in
+[2024-12-02 20:39:08] User: 2 booked the room: 2 from 2024-12-03 to 2024-12-04
+[2024-12-02 20:43:37] User: 2 booked the room: 3 from 2024-12-03 to 2024-12-05
+[2024-12-02 20:50:51] vikfju@gmail.com logged out
+[2024-12-02 20:50:52] admin@gmail.com logged in
+[2024-12-02 21:21:53] User: 1 booked the room: 5 from 2024-12-06 to 2024-12-09
+[2024-12-02 21:29:52] User: 1 booked the room: 6 from 2024-12-03 to 2024-12-04
+[2024-12-02 21:55:27] User: 1 booked the room: 3 from 2024-12-18 to 2024-12-20
+[2024-12-02 21:55:35] admin@gmail.com logged out
+[2024-12-02 21:55:36] admin@gmail.com logged in

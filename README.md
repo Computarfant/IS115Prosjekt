@@ -1,17 +1,21 @@
 # IS115Prosjekt
 Repository for gruppeprosjekt i IS115
 
-Create A new Database and update the configs in config.inc.php
+Create A new Database and update the configs in .env
 
-$config["db"]["host"] = "localhost:your-port";
+# Production environment
+ENVIRONMENT=production
+DB_HOST=localhost:your-port
+DB_USER=
+DB_PASS=
+DB_NAME= 'database name'
 
-$config["db"]["user"] = "root";
-
-$config["db"]["pass"] = "";
-
-$config["db"]["database"] = "database name";
-
-
+# Test environment
+ENVIRONMENT=test
+DB_HOST=localhost:your-port
+DB_USER=
+DB_PASS=
+DB_NAME= 'database name'
 
 To run the tests, use the following commands:
 
