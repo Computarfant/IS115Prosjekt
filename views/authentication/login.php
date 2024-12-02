@@ -37,11 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 exit;
                 } else {
-                    echo "Ukjent brukerrolle.";
+                    echo "Feil brukernavn eller passord.";
                 }
-            } else {
-                // Incorrect password
-                echo "Feil brukernavn eller passord.";
             }
         } else {
             echo "Database error: " . $stmt->error;

@@ -66,7 +66,7 @@ function getAllUsers() {
 function getUserById($brukerId) {
     global $conn;
 
-    $sql = "SELECT b.id, b.epost, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjonn 
+    $sql = "SELECT b.id, b.epost, b.rolleId, p.navn, p.etternavn, p.adresse, p.mobilNummer, p.kjonn 
             FROM Bruker b 
             LEFT JOIN Profil p ON b.id = p.brukerId
             WHERE b.id = ?";
@@ -93,13 +93,13 @@ function getUserById($brukerId) {
  * @param $kjonn
  * @return void
  */
-function updateUser($brukerId, $epost, $passord, $navn, $etternavn, $adresse, $mobilNummer, $kjonn) {
+function updateUser($brukerId, $epost, $passord, $rolleId, $navn, $etternavn, $adresse, $mobilNummer, $kjonn) {
     global $conn;
 
     // Updates the User table (email and password)
-    $sqlUpdateBruker = "UPDATE Bruker SET epost = ?, passord = ? WHERE id = ?";
+    $sqlUpdateBruker = "UPDATE Bruker SET epost = ?, passord = ?, rolleId = ? WHERE id = ?";
     $stmtUpdateBruker = mysqli_prepare($conn, $sqlUpdateBruker);
-    mysqli_stmt_bind_param($stmtUpdateBruker, "ssi", $epost, $passord, $brukerId);
+    mysqli_stmt_bind_param($stmtUpdateBruker, "ssii", $epost, $passord, $rolleId, $brukerId);
     mysqli_stmt_execute($stmtUpdateBruker);
 
     // Updates the Profile table (name, last name, address, mobile number, gender)
