@@ -20,3 +20,17 @@
 [2024-12-02 21:38:14] lennartbirk@gmail.com logged in
 [2024-12-02 21:38:21] admin@gmail.com logged in
 [2024-12-02 21:39:29] admin@gmail.com logged out
+[2024-12-02 22:33:08] lennartbirk@gmail.com logged out
+[2024-12-02 22:40:42] lennartbirk@gmail.com logged in
+[2024-12-02 22:41:38] User: 2 booked the room: 6 from 2024-12-18 to 2024-12-19
+[2024-12-02 22:42:40] lennartbirk@gmail.com logged out
+[2024-12-02 22:42:49] admin@gmail.com logged in
+[2024-12-02 23:03:38] admin@gmail.com logged out
+[2024-12-02 23:09:05] lennartbirk@gmail.com logged in
+[2024-12-02 23:13:16] User: 2 booked the room: 1 from 2024-12-02 to 2024-12-04
+[2024-12-02 23:13:35] User: 2 booked the room: 7 from 2024-12-02 to 2024-12-04
+[2024-12-02 23:14:06] lennartbirk@gmail.com logged out
+[2024-12-02 23:14:11] admin@gmail.com logged in
+[2024-12-02 23:15:19] admin@gmail.com logged out
+[2024-12-02 23:15:53] per@gmail.com logged in
+[2024-12-02 23:16:05] per@gmail.com logged out
