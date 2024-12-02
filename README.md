@@ -37,4 +37,4 @@ The one which is not commented out will be used as the connection when you launc
 If you get this error when trying to access the dbSetupfile in authentication:
 Warning: require(C:\xampp\htdocs\IS115Prosjekt\vendor\composer/../myclabs/deep-copy/src/DeepCopy/deep_copy.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\IS115Prosjekt\vendor\composer\autoload_real.php on line 41
 
-DELETE the vendor folder and composer.lock file and reinstall composer with: composer install
+DELETE the vendor folder and composer.lock file. Then reinstall composer with: composer install
