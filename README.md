@@ -22,3 +22,10 @@ To run the tests, use the following commands:
 ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/testFiles/userServiceTest.inc.php
 
 In the ENV file, comment out the database connection you do not want to use. There is one configuration for production and one for testing. The one which is not commented out will be used as the connection when you launch the project in the browser. 
+
+
+If you get this error when trying to access the dbSetupfile in authentication:
+
+Warning: require(C:\xampp\htdocs\IS115Prosjekt\vendor\composer/../myclabs/deep-copy/src/DeepCopy/deep_copy.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\IS115Prosjekt\vendor\composer\autoload_real.php on line 41
+
+Delete the vendor folder and composer.lock file and reinstall composer with: composer install
