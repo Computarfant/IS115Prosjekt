@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/romType.php';
-require_once __DIR__ .  '/../models/rom.php';
+require_once __DIR__ . '/../models/rom.php';
 require_once __DIR__ . '/../inc/config.inc.php';
 //^Her var det inc/inc før en test endring
 

@@ -1,6 +1,3 @@
-<?php
-require_once '../components/adminCheck.php'
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,22 +5,22 @@ require_once '../components/adminCheck.php'
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User List</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/bruker.css">
-   
-
+    <link rel="stylesheet" href="../../css/bruker.css">
 </head>
 <body>
 
 <?php
-include "../service/roomAdmin.inc.php";
+session_start();
+require_once '../../components/adminCheck.php';
+include '../../service/roomAdmin.inc.php';
 // Kaller getAllRooms funksjonen
 $rom = getAllRooms(); 
 ?>
 
 <div class="tilbakeKnapp">
-    <a href="../index.php">
+    <a href="../../index.php">
         <button type="button">Tilbake til start</button>
-        <br></br>
+        <br>
     </a>
     <br>
 </div>
@@ -54,10 +51,7 @@ $rom = getAllRooms();
                             <a href="redigerRom.php?id=<?php echo $room->id; ?>" class="btn btn-primary">Edit</a>
 
                             <a href="slettRom.php?id=<?php echo $room ->id; ?>" class="btn btn-danger btn-sm"
-                                onclick="return confirm('Er du sikker på at du vil slette dette rommet?');">Delete</a>
-
-
-
+                               onclick="return confirm('Er du sikker på at du vil slette dette rommet?');">Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -72,10 +66,8 @@ $rom = getAllRooms();
 
 <div class="navbar">
     <a href="opprettRom.php">Opprett nytt Rom</a>
-    <br></br>
+    <br>
 </div>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

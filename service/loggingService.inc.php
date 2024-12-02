@@ -1,7 +1,7 @@
 ﻿<?php
 //include '../inc/init.inc.php';
 
-$log = '../service/log.txt';
+$log = '../../assets/log.txt';
 
 function writeLog($message): void
 {

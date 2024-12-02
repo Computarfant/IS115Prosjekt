@@ -1,6 +1,7 @@
 <?php
-require '../service/roomAdmin.inc.php';
-require_once '../components/adminCheck.php';
+session_start();
+require '../../service/roomAdmin.inc.php';
+require_once '../../components/adminCheck.php';
 
 if (isset($_GET['id'])) {
     $roomId = $_GET['id'];
@@ -18,4 +19,3 @@ if (isset($_GET['id'])) {
     // Handle the case where the room ID was not provided
     echo "Ingen rom-ID spesifisert.";
 }
-?>

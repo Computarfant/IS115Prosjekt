@@ -19,6 +19,7 @@ return array(
     'PHPUnit\\Event\\Code\\IssueTrigger\\IndirectTrigger' => $vendorDir . '/phpunit/phpunit/src/Event/Value/Test/Issue/IndirectTrigger.php',
     'PHPUnit\\Event\\Code\\IssueTrigger\\IssueTrigger' => $vendorDir . '/phpunit/phpunit/src/Event/Value/Test/Issue/IssueTrigger.php',
     'PHPUnit\\Event\\Code\\IssueTrigger\\SelfTrigger' => $vendorDir . '/phpunit/phpunit/src/Event/Value/Test/Issue/SelfTrigger.php',
+    'PHPUnit\\Event\\Code\\IssueTrigger\\TestTrigger' => $vendorDir . '/phpunit/phpunit/src/Event/Value/Test/Issue/TestTrigger.php',
     'PHPUnit\\Event\\Code\\IssueTrigger\\UnknownTrigger' => $vendorDir . '/phpunit/phpunit/src/Event/Value/Test/Issue/UnknownTrigger.php',
     'PHPUnit\\Event\\Code\\NoTestCaseObjectOnCallStackException' => $vendorDir . '/phpunit/phpunit/src/Event/Exception/NoTestCaseObjectOnCallStackException.php',
     'PHPUnit\\Event\\Code\\Phpt' => $vendorDir . '/phpunit/phpunit/src/Event/Value/Test/Phpt.php',
