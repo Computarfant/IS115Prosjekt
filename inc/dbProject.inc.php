@@ -121,33 +121,34 @@ function dbSetupSQL(): array {
     ";
 
     $queries['insertRom'] = "
-        INSERT INTO Rom (navn, etasje, beskrivelse, rtid) VALUES 
-        ('101', 1, 'standard fattigmans rom', 1),
-        ('102', 1, 'standard au', 1),
-        ('103', 1, 'double 1', 2),
-        ('104', 1, 'double 2', 2),
-        ('105', 1, 'suite rik gutt', 3),
-        ('201', 2, 'standard fattigmans rom', 1),
-        ('202', 2, 'standard au', 1),
-        ('203', 2, 'double 1', 2),
-        ('204', 2, 'double 2', 2),
-        ('205', 2, 'suite rik gutt', 3),
-        ('301', 3, 'standard fattigmans rom', 1),
-        ('302', 3, 'standard au', 1),
-        ('303', 3, 'double 1', 2),
-        ('304', 3, 'double 2', 2),
-        ('305', 3, 'suite rik gutt', 3),
-        ('401', 4, 'standard fattigmans rom', 1),
-        ('402', 4, 'standard au', 1),
-        ('403', 4, 'double 1', 2),
-        ('404', 4, 'double 2', 2),
-        ('405', 4, 'suite rik gutt', 3),
-        ('501', 5, 'standard fattigmans rom', 1),
-        ('502', 5, 'standard au', 1),
-        ('503', 5, 'double 1', 2),
-        ('504', 5, 'double 2', 2),
-        ('505', 5, 'suite rik gutt', 3)
+    INSERT INTO Rom (navn, etasje, beskrivelse, rtid) VALUES 
+        ('101', 1, 'standard room, first on the right', 1),
+        ('102', 1, 'standard room, first on the left', 1),
+        ('103', 1, 'double room, second on the right', 2),
+        ('104', 1, 'double room, second on the left', 2),
+        ('105', 1, 'suite for wealthy people', 3),
+        ('201', 2, 'standard room, first on the right', 1),
+        ('202', 2, 'standard room, first on the left', 1),
+        ('203', 2, 'double room, second on the right', 2),
+        ('204', 2, 'double room, second on the left', 2),
+        ('205', 2, 'suite for wealthy people', 3),
+        ('301', 3, 'standard room, first on the right', 1),
+        ('302', 3, 'standard room, first on the left', 1),
+        ('303', 3, 'double room, second on the right', 2),
+        ('304', 3, 'double room, second on the left', 2),
+        ('305', 3, 'suite for wealthy people', 3),
+        ('401', 4, 'standard room, first on the right', 1),
+        ('402', 4, 'standard room, first on the left', 1),
+        ('403', 4, 'double room, second on the right', 2),
+        ('404', 4, 'double room, second on the left', 2),
+        ('405', 4, 'suite for wealthy people', 3),
+        ('501', 5, 'standard room, first on the right', 1),
+        ('502', 5, 'standard room, first on the left', 1),
+        ('503', 5, 'double room, second on the right', 2),
+        ('504', 5, 'double room, second on the left', 2),
+        ('505', 5, 'suite for wealthy people', 3)
     ";
+
 
     $queries['insertRoller'] = "
         INSERT INTO BrukerRolle (navn) VALUES ('gjest'), ('admin');

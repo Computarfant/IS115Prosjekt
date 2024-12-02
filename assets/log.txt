@@ -34,3 +34,5 @@
 [2024-12-02 23:15:19] admin@gmail.com logged out
 [2024-12-02 23:15:53] per@gmail.com logged in
 [2024-12-02 23:16:05] per@gmail.com logged out
+[2024-12-02 23:51:53] bruker@gmail.com logged in
+[2024-12-02 23:51:54] bruker@gmail.com logged out
